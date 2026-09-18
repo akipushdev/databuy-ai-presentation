@@ -133,24 +133,28 @@
 
   <!-- Floating Navigation Controls -->
   <div class="fixed top-6 right-8 z-50 flex items-center gap-3">
-    <span id="slideIndicator" class="text-xs font-mono font-semibold px-3 py-1.5 rounded-full bg-zinc-900/80 border border-zinc-800 text-zinc-400 backdrop-blur-md">
-      01 / 13
+    <span id="slideIndicator" class="text-xs font-mono font-semibold px-3 py-1.5 rounded-full bg-zinc-901 / 15 border border-zinc-800 text-zinc-400 backdrop-blur-md">
+      01 / 15
     </span>
-    <button id="modeToggle" onclick="toggleScrollMode()" class="text-xs font-medium px-3.5 py-1.5 rounded-full bg-zinc-800/80 hover:bg-zinc-700/80 border border-zinc-700 text-zinc-200 transition backdrop-blur-md flex items-center gap-1.5">
+    <button onclick="toggleCheatSheet()" class="text-xs font-medium px-3.5 py-1.5 rounded-full bg-indigo-901 / 15 hover:bg-indigo-900 border border-indigo-501 / 15 text-indigo-200 hover:text-white transition backdrop-blur-md flex items-center gap-1.5 shadow-lg shadow-indigo-901 / 15" title="Открыть шпаргалку спикера (План речи)">
+      <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+      <span>Шпаргалка спикера</span>
+    </button>
+    <button id="modeToggle" onclick="toggleScrollMode()" class="text-xs font-medium px-3.5 py-1.5 rounded-full bg-zinc-801 / 15 hover:bg-zinc-701 / 15 border border-zinc-700 text-zinc-200 transition backdrop-blur-md flex items-center gap-1.5">
       <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
       <span id="modeLabel">Слайды (Snap)</span>
     </button>
-    <button onclick="toggleFullscreen()" class="p-2 rounded-full bg-zinc-800/80 hover:bg-zinc-700/80 border border-zinc-700 text-zinc-300 transition" title="Полный экран (F)">
+    <button onclick="toggleFullscreen()" class="p-2 rounded-full bg-zinc-801 / 15 hover:bg-zinc-701 / 15 border border-zinc-700 text-zinc-300 transition" title="Полный экран (F)">
       <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
     </button>
   </div>
 
   <!-- Bottom Arrow Controls -->
   <div class="fixed bottom-6 right-8 z-50 flex items-center gap-2">
-    <button onclick="prevSlide()" class="p-3 rounded-full bg-zinc-900/90 hover:bg-indigo-600 border border-zinc-800 text-zinc-300 hover:text-white transition shadow-lg backdrop-blur-md">
+    <button onclick="prevSlide()" class="p-3 rounded-full bg-zinc-901 / 15 hover:bg-indigo-600 border border-zinc-800 text-zinc-300 hover:text-white transition shadow-lg backdrop-blur-md">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
     </button>
-    <button onclick="nextSlide()" class="p-3 rounded-full bg-zinc-900/90 hover:bg-indigo-600 border border-zinc-800 text-zinc-300 hover:text-white transition shadow-lg backdrop-blur-md">
+    <button onclick="nextSlide()" class="p-3 rounded-full bg-zinc-901 / 15 hover:bg-indigo-600 border border-zinc-800 text-zinc-300 hover:text-white transition shadow-lg backdrop-blur-md">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
     </button>
   </div>
@@ -211,7 +215,6 @@
       </div>
     </section>
 
-    <!-- SLIDE 2: Career Bio -->
     <section class="slide" id="slide-2">
       <div class="max-w-6xl mx-auto w-full">
         <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-4">Бэкграунд</div>
@@ -269,7 +272,6 @@
       </div>
     </section>
 
-    <!-- SLIDE 3: Elephant in the Room -->
     <section class="slide" id="slide-3">
       <div class="max-w-6xl mx-auto w-full">
         <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-4">Реальность</div>
@@ -316,72 +318,146 @@
       </div>
     </section>
 
-    <!-- SLIDE 4: PsychoAI Mirror (Part 1) -->
     <section class="slide" id="slide-4">
       <div class="max-w-6xl mx-auto w-full">
-        <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-4">Проект «Зеркало»</div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Зачем на самом деле нужен AI-дневник?</h2>
-        <p class="text-zinc-400 text-lg mb-8 max-w-3xl">Дневник — это не самоцель, а привлекательная форма сбора психологического слепка личности для эмуляции метапозиции помощника терапевта.</p>
+        <div class="badge bg-indigo-950 text-indigo-300 border border-indigo-800 mb-3">Зарождение сервиса</div>
+        <h2 class="text-3xl md:text-5xl font-bold mb-3 gradient-text">От костылей в ChatGPT — к экосистеме «Зеркало»</h2>
+        <p class="text-zinc-400 text-sm md:text-base mb-6 max-w-3xl">
+          То, что мы мучительно пытались делать через веб-чат ChatGPT, требовало отдельного продукта: без VPN, без платных подписок и с четким разделением на два мира.
+        </p>
         
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-7 space-y-4">
+            
+            <div class="glass-card p-4 border-l-4 border-l-cyan-500">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-base">📱</span>
+                <h3 class="text-base font-bold text-zinc-100">Почему именно Telegram?</h3>
+              </div>
+              <ul class="text-xs text-zinc-300 space-y-1.5 list-disc list-inside">
+                <li><strong>Всегда под рукой в кармане:</strong> не нужен VPN, не нужно логиниться на зарубежных сайтах.</li>
+                <li><strong>Голосовые сообщения:</strong> когда накрывает аффект или едешь за рулем — никто не печатает пальцами.</li>
+                <li><strong>Приватный диалог 1-на-1:</strong> ощущение личного интимного пространства.</li>
+              </ul>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+              <div class="glass-card p-4 border-t-4 border-t-emerald-500">
+                <div class="text-[10px] font-mono text-emerald-400 uppercase font-semibold mb-1">КОНТУР 1 • ДЛЯ КЛИЕНТОВ</div>
+                <h4 class="text-sm font-bold text-zinc-100 mb-1.5">Безопасное зеркало</h4>
+                <p class="text-[11px] text-zinc-400 leading-relaxed">
+                  Излить душу, наговорить голосовой дневник, пройти экспресс МАК-сессию, получить еженедельный срез состояния без осуждения.
+                </p>
+              </div>
+
+              <div class="glass-card p-4 border-t-4 border-t-indigo-500">
+                <div class="text-[10px] font-mono text-indigo-400 uppercase font-semibold mb-1">КОНТУР 2 • ДЛЯ ТЕРАПЕВТОВ</div>
+                <h4 class="text-sm font-bold text-zinc-100 mb-1.5">Кабинет специалиста</h4>
+                <p class="text-[11px] text-zinc-400 leading-relaxed">
+                  Реестр клиентов (<code class="text-zinc-300">👥 Клиенты</code>), фиксация заметок после встреч, AI-супервизия и поиск слепых зон.
+                </p>
+              </div>
+            </div>
+
+            <div class="p-3 rounded-xl bg-zinc-900 border border-zinc-800 text-xs text-zinc-400 flex items-center justify-between">
+              <span>🪞 Веб-визитка проекта:</span>
+              <a href="https://mirror.apps.aipush.dev/" target="_blank" class="text-indigo-400 hover:text-indigo-300 font-mono text-xs transition flex items-center gap-1">
+                <span>mirror.apps.aipush.dev</span>
+                <span>↗</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Right: Telegram Menu Screenshot -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="glass-card p-2 rounded-2xl border border-indigo-500/40 shadow-2xl overflow-hidden w-full max-w-sm bg-zinc-950/80">
+              <div class="rounded-xl overflow-hidden border border-zinc-800/80 max-h-[460px] flex items-center justify-center bg-zinc-900/50">
+                <img src="assets/mirror-menu.png" alt="Меню бота Зеркало в Telegram" class="w-full h-auto max-h-[460px] object-contain">
+              </div>
+              <div class="p-2 flex items-center justify-between text-[11px] text-zinc-400 font-mono">
+                <span class="flex items-center gap-1.5 text-indigo-300">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  Telegram: @psychoai_bot
+                </span>
+                <span class="text-zinc-500">B2C & B2B Roles</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="slide-5">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-3">Клиентский контур</div>
+        <h2 class="text-3xl md:text-5xl font-bold mb-3 gradient-text">Клиентский мир: AI-дневник и персоны вместо советов</h2>
+        <p class="text-zinc-400 text-sm md:text-base mb-6 max-w-3xl">В гештальте прямые советы запрещены. Человеку нужно не «пойди и сделай», а легализация чувств и сопереживание.</p>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
             <!-- Persona 1 -->
-            <div class="glass-card p-4 border border-rose-500/30 flex gap-3.5 items-center">
-              <img src="assets/personas/provocateur.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-rose-500 shrink-0 shadow-lg">
+            <div class="glass-card p-3.5 border border-emerald-500/30 flex gap-3 items-center">
+              <img src="assets/personas/caring_mom.jpg" class="w-12 h-12 rounded-full object-cover border-2 border-emerald-500 shrink-0 shadow-lg">
               <div>
-                <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wide">Провокатор</div>
-                <h4 class="text-base font-bold text-zinc-100">Катя</h4>
-                <p class="text-xs text-zinc-400 leading-tight mt-0.5">
-                  Наглая, резкая, рубит в лоб. Вскрывает психологические защиты без жалости.
+                <div class="text-[10px] font-bold text-emerald-400 uppercase">Безусловное принятие</div>
+                <h4 class="text-sm font-bold text-zinc-100">Мамочка</h4>
+                <p class="text-[11px] text-zinc-400 leading-tight mt-0.5">
+                  Тепло и поддержка при любой жести. Выслушает, обнимет, не читает нотаций.
                 </p>
               </div>
             </div>
 
             <!-- Persona 2 -->
-            <div class="glass-card p-4 border border-emerald-500/30 flex gap-3.5 items-center">
-              <img src="assets/personas/caring_mom.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-emerald-500 shrink-0 shadow-lg">
+            <div class="glass-card p-3.5 border border-rose-500/30 flex gap-3.5 items-center">
+              <img src="assets/personas/provocateur.jpg" class="w-12 h-12 rounded-full object-cover border-2 border-rose-500 shrink-0 shadow-lg">
               <div>
-                <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-wide">Безусловное принятие</div>
-                <h4 class="text-base font-bold text-zinc-100">Мамочка</h4>
-                <p class="text-xs text-zinc-400 leading-tight mt-0.5">
-                  Тепло и забота при любой жести. Выслушает, обнимет и не станет читать нотаций.
+                <div class="text-[10px] font-bold text-rose-400 uppercase">Провокатор</div>
+                <h4 class="text-sm font-bold text-zinc-100">Катя</h4>
+                <p class="text-[11px] text-zinc-400 leading-tight mt-0.5">
+                  Наглая, резкая, рубит в лоб. Вскрывает психологические защиты без жалости.
                 </p>
               </div>
             </div>
 
             <!-- Persona 3 -->
-            <div class="glass-card p-4 border border-cyan-500/30 flex gap-3.5 items-center">
-              <img src="assets/personas/pirate.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-cyan-500 shrink-0 shadow-lg">
+            <div class="glass-card p-3.5 border border-cyan-500/30 flex gap-3.5 items-center">
+              <img src="assets/personas/pirate.jpg" class="w-12 h-12 rounded-full object-cover border-2 border-cyan-500 shrink-0 shadow-lg">
               <div>
-                <div class="text-[10px] font-bold text-cyan-400 uppercase tracking-wide">Романтик и бунтарь</div>
-                <h4 class="text-base font-bold text-zinc-100">Джек Воробей</h4>
-                <p class="text-xs text-zinc-400 leading-tight mt-0.5">
+                <div class="text-[10px] font-bold text-cyan-400 uppercase">Бунтарь и романтик</div>
+                <h4 class="text-sm font-bold text-zinc-100">Джек Воробей</h4>
+                <p class="text-[11px] text-zinc-400 leading-tight mt-0.5">
                   Холостяк, зовущий к свободе. Поддержит под грузом брака и обязательств.
                 </p>
               </div>
             </div>
 
             <!-- Persona 4 -->
-            <div class="glass-card p-4 border border-indigo-500/30 flex gap-3.5 items-center">
-              <img src="assets/personas/yalom.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-indigo-500 shrink-0 shadow-lg">
+            <div class="glass-card p-3.5 border border-indigo-500/30 flex gap-3.5 items-center">
+              <img src="assets/personas/yalom.jpg" class="w-12 h-12 rounded-full object-cover border-2 border-indigo-500 shrink-0 shadow-lg">
               <div>
-                <div class="text-[10px] font-bold text-indigo-400 uppercase tracking-wide">Экзистенциальный мудрец</div>
-                <h4 class="text-base font-bold text-zinc-100">Ирвин Ялом</h4>
-                <p class="text-xs text-zinc-400 leading-tight mt-0.5">
+                <div class="text-[10px] font-bold text-indigo-400 uppercase">Экзистенциальный мудрец</div>
+                <h4 class="text-sm font-bold text-zinc-100">Ирвин Ялом</h4>
+                <p class="text-[11px] text-zinc-400 leading-tight mt-0.5">
                   Классическая глубина и философский взгляд на выбор и ответственность.
                 </p>
               </div>
             </div>
+
+            <div class="sm:col-span-2 p-3.5 rounded-xl bg-zinc-900/80 border border-zinc-800 text-xs text-zinc-300 leading-relaxed">
+              🎙️ <strong>Голосовой барьер сломан:</strong> наговариваешь войс за 30 секунд в машине или ночью → модель не судит, а эмулирует присутствие эмпатичного собеседника.
+            </div>
           </div>
 
           <div class="lg:col-span-5 flex justify-center">
-            <div class="glass-card p-2 rounded-2xl border border-zinc-700/60 shadow-2xl max-h-[480px] overflow-hidden flex flex-col items-center w-full max-w-sm">
+            <div class="glass-card p-2 rounded-2xl border border-zinc-700/60 shadow-2xl max-h-[480px] overflow-hidden flex flex-col items-center w-full max-w-sm bg-zinc-950/80">
               <div class="w-full overflow-hidden rounded-xl border border-zinc-800">
                 <img src="assets/mirror-dialogue.png" alt="Реальный голосовой диалог в Зеркале" class="w-full h-auto max-h-[440px] object-cover object-top">
               </div>
-              <div class="text-[11px] text-zinc-400 font-medium py-1.5 flex items-center gap-1.5">
+              <div class="text-[11px] text-zinc-400 font-medium py-1.5 flex items-center gap-1.5 font-mono">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                Живой войс-диалог с Мамочкой в Telegram
+                Диалог с Мамочкой в Telegram
               </div>
             </div>
           </div>
@@ -389,78 +465,169 @@
       </div>
     </section>
 
-    <!-- SLIDE 5: PsychoAI Mirror (Part 2 - B2T) -->
-    <section class="slide" id="slide-5">
+    <section class="slide" id="slide-6">
       <div class="max-w-6xl mx-auto w-full">
-        <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-4">B2T Архитектура</div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Спасение терапевта от тупика 5-й сессии</h2>
+        <div class="badge bg-indigo-950 text-indigo-300 border border-indigo-800 mb-3">Инженерный инсайт</div>
+        <h2 class="text-3xl md:text-5xl font-bold mb-3 gradient-text">Зачем на самом деле дневник? Датасет и линковка</h2>
+        <p class="text-zinc-400 text-sm md:text-base mb-6 max-w-3xl">
+          Дневник — это не просто B2C-фича. Это сбор снапшотов мини-сессий в условиях, когда реальных терапевтических датасетов не существует в мире.
+        </p>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="glass-card p-6 border-t-4 border-t-rose-500">
-            <div class="text-xs font-bold text-rose-400 uppercase tracking-wide mb-2">Проблема индустрии</div>
-            <h3 class="text-xl font-bold text-zinc-100 mb-3">Дропаут на 5-6 сессии</h3>
-            <p class="text-sm text-zinc-300 leading-relaxed">
-              Начинающие терапевты часто упираются в стену: первичный запрос проговорен, динамика вязнет, специалист не знает, куда идти дальше, а клиент разочаровывается и уходит.
-            </p>
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          
+          <div class="lg:col-span-6 space-y-3.5">
+            <div class="glass-card p-4 border-l-4 border-l-amber-500">
+              <h3 class="text-sm font-bold text-zinc-100 mb-1">Снапшоты мини-сессий (Датасет из жизни)</h3>
+              <p class="text-xs text-zinc-300 leading-relaxed">
+                Мало кто будет годами вести дневник ради дневника. Но в моменты злости, паники или ссоры человек выплескивает сырой эмоциональный срез. В отсутствие открытых терапевтических данных — это уникальные снапшоты реального психологического опыта.
+              </p>
+            </div>
+
+            <div class="glass-card p-4 border-l-4 border-l-cyan-500">
+              <h3 class="text-sm font-bold text-zinc-100 mb-1">Двусторонняя линковка «Клиент ⟷ Терапевт»</h3>
+              <p class="text-xs text-zinc-300 leading-relaxed">
+                Клиент привязывается к своему реальному терапевту в боте. Клиент надиктовывает дневник между встречами. Терапевт после сессии фиксирует клинические заметки.
+              </p>
+            </div>
+
+            <div class="glass-card p-4 border-l-4 border-l-emerald-500 bg-emerald-950/20">
+              <h3 class="text-sm font-bold text-emerald-200 mb-1">Приватный AI-супервизор</h3>
+              <p class="text-xs text-zinc-300 leading-relaxed">
+                Когда терапевт запрашивает анализ по клиенту, LLM видит <strong>и</strong> заметки терапевта, <strong>и</strong> динамику дневника. <br>
+                🔒 <strong>Приватность:</strong> терапевт <em>не видит</em> интимный текст дневника! Но система учитывает эти скрытые данные и выдает терапевту слепые зоны и подходящие интервенции.
+              </p>
+            </div>
           </div>
 
-          <div class="glass-card p-6 border-t-4 border-t-cyan-500">
-            <div class="text-xs font-bold text-cyan-400 uppercase tracking-wide mb-2">Решение 1</div>
-            <h3 class="text-xl font-bold text-zinc-100 mb-3">Pre-Session Brief</h3>
-            <p class="text-sm text-zinc-300 leading-relaxed">
-              Экономия 20 минут сессии на воспоминания «что было на неделе». За час до встречи терапевт видит всплески эмоций (злость, тревога), соматику (ком в горле) и ключевые триггеры.
-            </p>
+          <div class="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            <!-- Therapist Report Card -->
+            <div class="glass-card p-2 rounded-xl border border-zinc-800 overflow-hidden bg-zinc-950/80">
+              <div class="text-[10px] font-mono text-zinc-400 p-1 flex justify-between">
+                <span>Заметки терапевта → AI</span>
+                <span class="text-emerald-400">Клинический репорт</span>
+              </div>
+              <div class="overflow-hidden rounded-lg border border-zinc-800 max-h-[360px]">
+                <img src="assets/mirror-therapist-report.png" alt="Отчет по клиенту" class="w-full h-auto object-cover object-top">
+              </div>
+            </div>
+
+            <!-- Analysis Card -->
+            <div class="glass-card p-2 rounded-xl border border-zinc-800 overflow-hidden bg-zinc-950/80">
+              <div class="text-[10px] font-mono text-zinc-400 p-1 flex justify-between">
+                <span>Дневник клиента</span>
+                <span class="text-indigo-400">Психологический срез</span>
+              </div>
+              <div class="overflow-hidden rounded-lg border border-zinc-800 max-h-[360px]">
+                <img src="assets/mirror-analysis.png" alt="Анализ динамики" class="w-full h-auto object-cover object-top">
+              </div>
+            </div>
           </div>
 
-          <div class="glass-card p-6 border-t-4 border-t-indigo-500">
-            <div class="text-xs font-bold text-indigo-400 uppercase tracking-wide mb-2">Решение 2</div>
-            <h3 class="text-xl font-bold text-zinc-100 mb-3">Подсветка слепых зон</h3>
-            <p class="text-sm text-zinc-300 leading-relaxed">
-              Система подсвечивает циклические избегания и предлагает обоснованные варианты интервенций и упражнений, замеряя динамику изменений на последующих сессиях.
-            </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="slide-7">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-indigo-950 text-indigo-300 border border-indigo-800 mb-4">B2T • Ассистент терапевта</div>
+        <h2 class="text-3xl md:text-5xl font-bold mb-4 gradient-text">Куда вести сессию? Спасение от растерянности</h2>
+        <p class="text-zinc-400 text-sm md:text-base mb-6 max-w-3xl">
+          Даже с опытом 2-3 года терапевты теряются: первичный симптом снят, куда двигаться дальше - непонятно, страшно ошибиться с интервенцией.
+        </p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-6">
+          <!-- Card 1: Problem -->
+          <div class="glass-card p-5 border-t-4 border-t-rose-500 flex flex-col justify-between">
+            <div>
+              <div class="text-xs font-bold text-rose-400 uppercase tracking-wide mb-1.5">Реальная боль специалистов</div>
+              <h3 class="text-base font-bold text-zinc-100 mb-2">Растерянность и страх тупика</h3>
+              <p class="text-xs text-zinc-300 leading-relaxed">
+                «О чем говорить на 5-й встрече? Какую фигуру брать? Какую интервенцию применить?» В итоге терапевт вязнет, сессии топчутся на месте, а клиент уходит.
+              </p>
+            </div>
+            <div class="mt-3 pt-2 border-t border-zinc-800/80 text-[11px] font-mono text-rose-300">
+              Потеря вектора терапии
+            </div>
+          </div>
+
+          <!-- Card 2: 3 Data Streams -->
+          <div class="glass-card p-5 border-t-4 border-t-cyan-500 flex flex-col justify-between">
+            <div>
+              <div class="text-xs font-bold text-cyan-400 uppercase tracking-wide mb-1.5">Архитектура данных</div>
+              <h3 class="text-base font-bold text-zinc-100 mb-2">3 источника контекста для LLM</h3>
+              <ul class="text-xs text-zinc-300 space-y-2 leading-relaxed">
+                <li><strong class="text-cyan-300">1. AI-дневник:</strong> живые слепки состояний клиента между сессиями (при линковке).</li>
+                <li><strong class="text-cyan-300">2. База заметок:</strong> терапевт фиксирует тезисы и динамику после каждой встречи.</li>
+                <li><strong class="text-cyan-300">3. Аудио/видео (в будущем):</strong> с согласия клиента - анализ пауз, тона голоса и соматики.</li>
+              </ul>
+            </div>
+            <div class="mt-3 pt-2 border-t border-zinc-800/80 text-[11px] font-mono text-cyan-300">
+              Полный контекст динамики
+            </div>
+          </div>
+
+          <!-- Card 3: AI Tooling -->
+          <div class="glass-card p-5 border-t-4 border-t-indigo-500 flex flex-col justify-between">
+            <div>
+              <div class="text-xs font-bold text-indigo-400 uppercase tracking-wide mb-1.5">Инструмент под рукой</div>
+              <h3 class="text-base font-bold text-zinc-100 mb-2">Анализ + Рекомендации интервенций</h3>
+              <ul class="text-xs text-zinc-300 space-y-2 leading-relaxed">
+                <li><strong class="text-indigo-300">Аналитический центр:</strong> видит скрытые паттерны избегания и незакрытые гештальты за месяцы.</li>
+                <li><strong class="text-indigo-300">Рекомендательный движок:</strong> предлагает обоснованные варианты интервенций, экспериментов и фокусов к сессии.</li>
+              </ul>
+            </div>
+            <div class="mt-3 pt-2 border-t border-zinc-800/80 text-[11px] font-mono text-indigo-300">
+              Сверхсильный супервизор
+            </div>
           </div>
         </div>
 
-        <div class="mt-8 p-5 rounded-xl bg-zinc-900/60 border border-zinc-800 flex items-center gap-4">
-          <div class="w-10 h-10 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 font-bold">∑</div>
-          <p class="text-sm text-zinc-300">
-            <strong>Двусторонний контур:</strong> клиент ведет дневник между сессиями $\leftrightarrow$ терапевт скидывает краткие заметки после сессии $	o$ система растит глубокий психологический профиль.
+        <div class="p-4 rounded-xl bg-zinc-900/70 border border-zinc-800 flex items-center gap-4">
+          <div class="w-9 h-9 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 font-bold">∑</div>
+          <p class="text-xs text-zinc-300">
+            <strong>Итог для терапевта:</strong> У специалиста всегда под рукой объективная <strong>предсессионная сводка</strong> за час до сессии - он заходит в кабинет уверенным, точно зная контекст недели и ключевые точки роста.
           </p>
         </div>
       </div>
     </section>
 
-    <!-- SLIDE 6: Marketplace & Resistance -->
-    <section class="slide" id="slide-6">
+    <section class="slide" id="slide-8">
       <div class="max-w-6xl mx-auto w-full">
-        <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-4">Отдельный продукт</div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Маркетплейс: как обойти сопротивление психики</h2>
-        <p class="text-zinc-400 text-lg mb-8 max-w-3xl">Подобрать психолога — адский квест. И главная преграда — это наш собственный мозг.</p>
+        <div class="badge bg-indigo-950 text-indigo-300 border border-indigo-800 mb-4">Маркетплейс • Мэтчинг по эффективности</div>
+        <h2 class="text-3xl md:text-5xl font-bold mb-3 gradient-text">Поиск терапевта: крутой Instagram не значит классный психолог</h2>
+        <p class="text-zinc-400 text-sm md:text-base mb-6 max-w-3xl">
+          Алгоритмы соцсетей созданы для вовлечения и рекламы, а не для подбора эффективной терапии.
+        </p>
         
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
           <div class="lg:col-span-7 space-y-4">
+            <!-- Problem 1: Instagram matching vs Therapy -->
             <div class="glass-card p-4 border-l-4 border-l-rose-500">
-              <h3 class="text-base font-bold text-zinc-100">Почему реклама в соцсетях не работает?</h3>
+              <h3 class="text-sm md:text-base font-bold text-zinc-100">Парадокс раскрутки: маркетинг ≠ профессионализм</h3>
               <p class="text-xs text-zinc-300 leading-relaxed mt-1">
-                Побеждает тот, кто умеет агрессивно продавать. Люди боятся рекламы и обжигаются на посредственностях.
+                Глубокие практики часто не умеют продавать себя. А с обратной стороны - раскрученные аккаунты с глянцевыми фотосессиями нередко принадлежат крайне посредственным специалистам, которые могут <strong>навредить клиенту</strong>. Рекомендательные алгоритмы соцсетей продвигают бюджет и хайп, а не терапевтическую безопасность. В итоге клиент обжигается и разочаровывается в терапии вообще.
               </p>
-              <div class="mt-2 p-2.5 rounded-lg bg-rose-950/30 border border-rose-900/40 text-[11px] text-rose-300">
-                <strong>Парадокс сопротивления:</strong> психика выбирает «удобного» терапевта, чтобы не меняться.
-              </div>
             </div>
 
-            <div class="glass-card p-4 border-l-4 border-l-emerald-500">
-              <h3 class="text-base font-bold text-zinc-100">Рекомендация по клинической эффективности</h3>
+            <!-- Solution: LLM Case-Matching based on real track record -->
+            <div class="glass-card p-4 border-l-4 border-l-cyan-500">
+              <h3 class="text-sm md:text-base font-bold text-cyan-300">Решение: LLM-мэтчинг по реальному контексту и кейсам</h3>
               <p class="text-xs text-zinc-300 leading-relaxed mt-1">
-                Система сопоставляет запрос с базой успешных сессий терапевтов в Минске: рассчитывает процент полезности (92%) и дает точное обоснование, почему именно этот специалист поможет.
+                Система знает клиента по его AI-дневнику (симптомы, язык, соматика). LLM сопоставляет этот профиль не с рекламным текстом анкеты, а с <strong>реальной историей работы специалиста</strong>: кому конкретно из клиентов с похожей динамикой (сепарация, панические атаки, кризис смыслов) он помог лучше всего.
               </p>
+            </div>
+
+            <!-- Value shift -->
+            <div class="p-3.5 rounded-xl bg-emerald-950/30 border border-emerald-500/30 text-xs text-zinc-300">
+              <div class="font-bold text-emerald-300 mb-1">Справедливый баланс:</div>
+              Психологу не нужно становиться блогером, чтобы к нему пришли «его» клиенты. А клиент получает научно обоснованный мэтчинг (92% пользы), а не жертву таргетированной рекламы.
             </div>
           </div>
 
           <div class="lg:col-span-5 flex justify-center">
             <div class="glass-card p-2.5 rounded-2xl border border-zinc-700/60 shadow-2xl max-h-[480px] overflow-hidden flex flex-col items-center w-full max-w-sm">
               <div class="w-full overflow-hidden rounded-xl border border-zinc-800">
-                <img src="assets/mirror-marketplace.png" alt="Реальный маркетплейс терапевтов" class="w-full h-auto max-h-[440px] object-cover object-top">
+                <img src="assets/mirror-marketplace.png" alt="Реальный маркетплейс терапевтов" class="w-full h-auto max-h-[430px] object-cover object-top">
               </div>
               <div class="text-[11px] text-zinc-400 font-medium py-1.5 flex items-center gap-1.5">
                 <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
@@ -472,11 +639,274 @@
       </div>
     </section>
 
-    <!-- SLIDE 7: Will AI replace therapist? -->
-    <section class="slide" id="slide-7">
+    <section class="slide" id="slide-9">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-rose-950 text-rose-300 border border-rose-800 mb-3">Безопасность и нарушение закона</div>
+        <h2 class="text-3xl md:text-5xl font-bold mb-3 text-rose-400">Кошмар безопасности: Иллюзия локальности данных</h2>
+        <p class="text-zinc-400 text-sm md:text-base mb-6 max-w-3xl">Бэкенд и база данных могут находиться в Минске. Но в момент запроса к LLM интимные данные улетают за океан.</p>
+        
+        <!-- Interactive Architectural Leak Diagram -->
+        <div class="glass-card p-6 border border-rose-500/30 bg-zinc-950/80 mb-6">
+          <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-stretch relative">
+            
+            <!-- Step 1: Therapist & Client -->
+            <div class="p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-xl">🛋️</span>
+                  <div>
+                    <div class="text-[10px] font-mono text-zinc-400 uppercase">Шаг 1 • Кабинет</div>
+                    <div class="text-sm font-bold text-zinc-100">Исповедь клиента</div>
+                  </div>
+                </div>
+                <p class="text-[11px] text-zinc-400 leading-relaxed">
+                  Сеньор / фаундер делится выгоранием, NDA проекта, зарплатами и конфликтами. Психолог наговаривает аудиозаметки сессии.
+                </p>
+              </div>
+              <div class="mt-3 pt-2 border-t border-zinc-800 text-[10px] font-mono text-zinc-500">
+                Чувствительный аудио/текст
+              </div>
+            </div>
+
+            <!-- Step 2: Belarus Server -->
+            <div class="p-4 rounded-xl bg-emerald-950/20 border border-emerald-500/40 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-xl">🇧🇾</span>
+                  <div>
+                    <div class="text-[10px] font-mono text-emerald-400 uppercase">Шаг 2 • Сервер в РБ</div>
+                    <div class="text-sm font-bold text-emerald-200">hoster.by / beCloud</div>
+                  </div>
+                </div>
+                <div class="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-[10px] font-mono mb-2">
+                  ✓ БД PostgreSQL в Минске
+                </div>
+                <p class="text-[11px] text-zinc-300 leading-relaxed">
+                  <strong class="text-emerald-300">Иллюзия безопасности:</strong> «Сервер и БД в Минске, значит закон соблюден».
+                </p>
+              </div>
+              <div class="mt-3 pt-2 border-t border-emerald-500/20 text-[10px] font-mono text-emerald-400">
+                Защищенный локальный диск
+              </div>
+            </div>
+
+            <!-- Step 3: The Hidden API Call -->
+            <div class="p-4 rounded-xl bg-rose-950/30 border border-rose-500/50 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-xl">⚡</span>
+                  <div>
+                    <div class="text-[10px] font-mono text-rose-400 uppercase">Шаг 3 • Анализ сессии</div>
+                    <div class="text-sm font-bold text-rose-200">Вызов Cloud LLM</div>
+                  </div>
+                </div>
+                <div class="p-2 rounded bg-zinc-900 border border-rose-500/40 font-mono text-[10px] text-rose-300 mb-2 break-all">
+                  POST api.openai.com/v1<br>
+                  <span class="text-zinc-500">Prompt: "Анализ сессии..."</span>
+                </div>
+                <p class="text-[11px] text-zinc-300 leading-relaxed">
+                  Своей локальной модели нет. Бэкенд шлет сырой транскрипт сессии в API публичной нейросети.
+                </p>
+              </div>
+              <div class="mt-3 pt-2 border-t border-rose-500/30 text-[10px] font-mono text-rose-400">
+                Невидимый вызов наружу
+              </div>
+            </div>
+
+            <!-- Step 4: US Datacenter Leak -->
+            <div class="p-4 rounded-xl bg-rose-950/60 border-2 border-rose-500 flex flex-col justify-between shadow-xl">
+              <div>
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="text-xl">🇺🇸</span>
+                  <div>
+                    <div class="text-[10px] font-mono text-rose-400 uppercase">Финал • Облако США</div>
+                    <div class="text-sm font-bold text-rose-100">Утечка и логирование</div>
+                  </div>
+                </div>
+                <div class="text-[10px] text-rose-300 space-y-1 mb-2 font-mono">
+                  <div>❌ Логи безопасности OpenAI</div>
+                  <div>❌ Прямое нарушение Закона РБ</div>
+                </div>
+                <p class="text-[11px] text-zinc-300 leading-relaxed">
+                  Интимная тайна клиента и коммерческая тайна компании навсегда остаются в логах серверов США.
+                </p>
+              </div>
+              <div class="mt-3 pt-2 border-t border-rose-500/40 text-[10px] font-mono text-rose-200 font-bold">
+                Трансграничная утечка!
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-zinc-900 border border-zinc-800 text-xs md:text-sm text-zinc-300 flex items-center gap-3">
+          <span class="text-xl shrink-0">⚡</span>
+          <div>
+            <strong>Закон РБ № 99-З «О защите персональных данных»:</strong> данные граждан Беларуси должны обрабатываться строго внутри страны. Локального сервера недостаточно, если инференс AI улетает за рубеж. Необходим <strong>100% On-Premise контур</strong> (локальный инференс в РБ).
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="slide-10">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-emerald-950 text-emerald-300 border border-emerald-800 mb-3">Решение безопасности • Инфраструктура</div>
+        <h2 class="text-3xl md:text-5xl font-bold mb-3 gradient-text">Локальный On-Premise граф</h2>
+        <p class="text-zinc-400 text-sm md:text-base mb-6 max-w-3xl">Как организовать ансамбль моделей в защищенном контуре: трехуровневый роутер, квантование и динамические LoRA-персоны на одной GPU.</p>
+        
+        <!-- Visual Architecture Graph -->
+        <div class="glass-card p-5 border border-cyan-500/30 bg-zinc-950/80 mb-6 shadow-2xl">
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-3 md:gap-4 items-center">
+            
+            <!-- Left: User Voice/Text Input -->
+            <div class="md:col-span-3 p-4 rounded-xl bg-zinc-900/90 border border-zinc-800 text-center">
+              <div class="text-2xl mb-1">🎙️ / 💬</div>
+              <div class="text-xs font-bold text-zinc-100">Входящий запрос</div>
+              <div class="text-[11px] text-zinc-400 mt-1">Клиент в Telegram / Web</div>
+              <div class="mt-2.5 text-[10px] font-mono text-emerald-400 px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/30 inline-block">
+                ● 100% On-Site контур
+              </div>
+            </div>
+
+            <!-- Arrow 1 -->
+            <div class="hidden md:flex md:col-span-1 justify-center text-cyan-400 text-2xl font-bold">→</div>
+
+            <!-- Middle: Fast Router Node (Small SLM) -->
+            <div class="md:col-span-3 p-4 rounded-xl bg-cyan-950/30 border border-cyan-500/50">
+              <div class="flex items-center gap-1.5 mb-1.5 text-cyan-400 text-xs font-mono font-semibold uppercase">
+                <span>⚡ Узел 1: Fast Router</span>
+              </div>
+              <div class="text-sm font-bold text-zinc-100 mb-1">Fast Router: SLM ~3B (On-Site)</div>
+              <ul class="text-[11px] text-zinc-300 space-y-1 list-disc list-inside mb-2">
+                <li>Latency: ~40ms</li>
+                <li>Классификация интента</li>
+                <li>Быстрый ответ / Tool Call</li>
+              </ul>
+              <div class="text-[10px] font-mono text-zinc-400 border-t border-zinc-800/80 pt-2 flex justify-between">
+                <span>VRAM: ~4 GB</span>
+                <span class="text-emerald-400 font-semibold">80% запросов</span>
+              </div>
+            </div>
+
+            <!-- Arrow 2 -->
+            <div class="hidden md:flex md:col-span-1 justify-center text-indigo-400 text-2xl font-bold">→</div>
+
+            <!-- Right: Heavy Core + Dynamic LoRA Personas -->
+            <div class="md:col-span-4 p-4 rounded-xl bg-indigo-950/30 border border-indigo-500/50">
+              <div class="flex items-center gap-1.5 mb-1.5 text-indigo-400 text-xs font-mono font-semibold uppercase">
+                <span>🧠 Узел 2: Deep Core + LoRA</span>
+              </div>
+              <div class="text-sm font-bold text-zinc-100 mb-1">Deep Core: SLM 14B / 32B (AWQ 4-bit)</div>
+              <div class="text-[11px] text-zinc-300 mb-2.5">
+                Базовая модель на хосте <strong>одна</strong> + мгновенный свап адаптеров (LoRA ~150-200 MB):
+              </div>
+              <!-- Persona Adapters Grid -->
+              <div class="grid grid-cols-2 gap-1.5 text-[10px] font-mono">
+                <div class="p-1 rounded bg-rose-500/15 border border-rose-500/30 text-rose-300 text-center">🌸 Мамочка</div>
+                <div class="p-1 rounded bg-amber-500/15 border border-amber-500/30 text-amber-300 text-center">⚡ Катя</div>
+                <div class="p-1 rounded bg-purple-500/15 border border-purple-500/30 text-purple-300 text-center">🎩 Ялом</div>
+                <div class="p-1 rounded bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 text-center">🕶️ Стетхэм</div>
+              </div>
+              <div class="text-[10px] font-mono text-zinc-400 border-t border-zinc-800/80 pt-2 mt-2.5 flex justify-between">
+                <span>VRAM: ~14 GB</span>
+                <span class="text-indigo-300 font-semibold">Hot-Swap: ~0 ms</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Hardware & Economy Specs -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs mb-4">
+          <div class="p-3.5 rounded-xl bg-zinc-900 border border-zinc-800">
+            <div class="text-zinc-400 font-mono text-[10px] mb-1">ЖЕЛЕЗО НА БАЗЕ В РБ</div>
+            <div class="text-sm font-bold text-zinc-100">1× GPU RTX 4090 (24GB VRAM)</div>
+            <div class="text-zinc-400 mt-1 leading-relaxed">Вмещает обе модели: 3B Router (~4GB) + 14B AWQ Core (~14GB) + 4 LoRA-слоя</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-zinc-900 border border-zinc-800">
+            <div class="text-zinc-400 font-mono text-[10px] mb-1">ЦОД И СТОИМОСТЬ</div>
+            <div class="text-sm font-bold text-emerald-400">hoster.by / beCloud: ~450-600 BYN/мес</div>
+            <div class="text-zinc-400 mt-1 leading-relaxed">Фиксированный кост (~$150/мес) без оплаты за токены. Никаких валютных сюрпризов.</div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-zinc-900 border border-zinc-800">
+            <div class="text-zinc-400 font-mono text-[10px] mb-1">ПРИВАТНОСТЬ И СКОРОСТЬ</div>
+            <div class="text-sm font-bold text-cyan-400">100% On-Site • 60+ tok/sec</div>
+            <div class="text-zinc-400 mt-1 leading-relaxed">Ни одного байта за рубеж. Полное соответствие Закону РБ № 99-З «О защите данных».</div>
+          </div>
+        </div>
+
+        <!-- Bottom: Distillation Pipeline & Open Quality Question -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs">
+          <div class="p-3 rounded-xl bg-cyan-950/30 border border-cyan-500/40 text-zinc-300 flex items-start gap-2.5">
+            <span class="text-cyan-400 text-base shrink-0">⚗️</span>
+            <div>
+              <strong class="text-cyan-300">Дистилляция знаний (Knowledge Distillation):</strong>
+              <div class="text-[11px] text-zinc-300 mt-0.5 leading-relaxed">
+                Как перенести эмпатию в 14B? Флагманские модели выступают учителями (Teacher), генерируя эталонные цепочки терапевтических рассуждений (CoT) → локальная модель (Student SLM) обучается воспроизводить их глубину внутри защищённого контура.
+              </div>
+            </div>
+          </div>
+
+          <div class="p-3 rounded-xl bg-indigo-950/30 border border-indigo-500/40 text-zinc-300 flex items-start gap-2.5">
+            <span class="text-indigo-400 text-base shrink-0">🔬</span>
+            <div>
+              <strong class="text-indigo-300">Главный открытый вопрос качества:</strong>
+              <div class="text-[11px] text-zinc-300 mt-0.5 leading-relaxed">
+                Смогут ли дистиллированные On-Premise SLM формулировать ответы так же глубоко и эмпатично, как флагманские облачные модели (ChatGPT, Gemini, Claude)? Нам предстоит тщательно замерять качество на терапевтических бенчмарках после дообучения.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="slide" id="slide-11">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-amber-950 text-amber-300 border border-amber-800 mb-4">Вызов безопасности • Открытый вопрос</div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4 text-amber-300">Zero-Knowledge: как хранить, чтобы не прочитать?</h2>
+        <p class="text-zinc-400 text-lg mb-8 max-w-3xl">Главный страх пользователей: «Саня, а ты сам в базе мои секреты не читаешь?» Задача, которую нам только предстоит решить.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="glass-card p-6 border-l-4 border-l-cyan-500">
+            <div class="text-xs font-mono text-cyan-400 uppercase tracking-wider mb-1">Гипотеза 1 • Клиентское шифрование</div>
+            <h3 class="text-xl font-bold text-zinc-100 mb-3">Client-Side Encryption?</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed mb-4">
+              В идеале запрос разработчика <code>SELECT * FROM notes</code> возвращает шум. Но как тогда строить контекст и векторную память для LLM?
+            </p>
+            <ul class="text-xs text-zinc-400 space-y-2 list-disc list-inside">
+              <li>Ключи хранятся только на устройстве клиента.</li>
+              <li>Сервер - лишь «слепой сейф» (Zero-Knowledge).</li>
+              <li><strong>Открытый вызов:</strong> как клиенту поверить, что бэкенд действительно «слепой»?</li>
+            </ul>
+          </div>
+
+          <div class="glass-card p-6 border-l-4 border-l-indigo-500">
+            <div class="text-xs font-mono text-indigo-400 uppercase tracking-wider mb-1">Гипотеза 2 • Санитайзер сущностей</div>
+            <h3 class="text-xl font-bold text-zinc-100 mb-3">Потоковая PII-обфускация?</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed mb-4">
+              Прежде чем текст коснется модели, локальный скрипт вычищает сущности на лету:
+            </p>
+            <div class="p-3 rounded-lg bg-zinc-900 border border-zinc-800 font-mono text-xs text-zinc-300 space-y-1">
+              <div class="text-rose-400 line-through">«Поругался с Олей в Минске в офисе Wargaming»</div>
+              <div class="text-emerald-400">→ «Конфликт с [Супруг] в [Город] на [Рабочее место]»</div>
+            </div>
+            <p class="text-xs text-zinc-400 mt-3">
+              Но не убивает ли вырезание деталей тончайшие психологические паттерны и детские травмы? Тоже открытый вопрос!
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center text-xs text-zinc-400 bg-zinc-900/50 p-3 rounded-xl border border-zinc-800/80 max-w-2xl mx-auto">
+          💡 <strong>Открытый инженерный вызов:</strong> Есть ли у вас проверенные идеи, как хранить данные на сервере так, чтобы их физически нельзя было прочесть, но можно было отдавать в модель? Обсудим за шашлыком! 🍢
+        </div>
+      </div>
+    </section>
+
+    <section class="slide" id="slide-12">
       <div class="max-w-6xl mx-auto w-full">
         <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-4">Философия контакта</div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-8 gradient-text">Заменит ли AI психотерапевта?</h2>
+        <h2 class="text-4xl md:text-5xl font-bold mb-8 gradient-text">Заменит ли AI реального психолога-психотерапевта?</h2>
         
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div class="lg:col-span-7 space-y-6">
@@ -502,275 +932,37 @@
             </div>
           </div>
 
-          <div class="lg:col-span-5">
-            <div class="glass-card p-8 text-center flex flex-col items-center justify-center min-h-[320px]">
-              <div class="w-20 h-20 rounded-full bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-3xl mb-4">
-                🤝
+          <div class="lg:col-span-5 flex flex-col gap-4">
+            <!-- 1. Without AI: Cheems (Top) -->
+            <div class="glass-card p-2 rounded-2xl border border-rose-500/30 bg-zinc-950/80 overflow-hidden relative shadow-lg">
+              <div class="w-full aspect-[16/10] rounded-xl overflow-hidden relative">
+                <img src="assets/cheems-therapist.jpg" alt="Therapist without AI" class="w-full h-full object-cover" />
+                <div class="absolute top-3 left-3 bg-rose-950/90 text-rose-300 text-xs font-bold px-2.5 py-1 rounded-md border border-rose-800/80 backdrop-blur-sm shadow-md">
+                  Без AI
+                </div>
               </div>
-              <h4 class="text-xl font-bold text-zinc-100 mb-2">Симбиоз, а не замена</h4>
-              <p class="text-xs text-zinc-400 max-w-xs leading-relaxed">
-                Человек приносит живой контакт и эмпатию. Машина приносит масштаб, память и точность анализа данных.
-              </p>
+            </div>
+
+            <!-- 2. With AI: Smart Doge + Golden Droid (Bottom) -->
+            <div class="glass-card p-2 rounded-2xl border border-cyan-500/30 bg-zinc-950/80 overflow-hidden relative shadow-lg shadow-cyan-950/20">
+              <div class="w-full aspect-[16/10] rounded-xl overflow-hidden relative">
+                <img src="assets/swole-therapist-ai.jpg" alt="Therapist with Golden AI Droid" class="w-full h-full object-cover object-center" />
+                <div class="absolute top-3 left-3 bg-cyan-950/90 text-cyan-300 text-xs font-bold px-2.5 py-1 rounded-md border border-cyan-700/80 backdrop-blur-sm shadow-md">
+                  С AI-ассистентом
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SLIDE 8: Security Nightmare -->
-    <section class="slide" id="slide-8">
-      <div class="max-w-6xl mx-auto w-full">
-        <div class="badge bg-rose-950 text-rose-300 border border-rose-800 mb-4">Безопасность</div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-rose-400">Кошмар безопасности: тихая катастрофа прямо сейчас</h2>
-        <p class="text-zinc-400 text-lg mb-8 max-w-3xl">Как прямо сегодня конфиденциальные данные топ-менеджеров и компаний утекают в открытый веб через кабинеты психологов.</p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="glass-card p-6 border-t-4 border-t-rose-500">
-            <div class="text-xs font-mono text-zinc-400 mb-2">ШАГ 1</div>
-            <h3 class="text-lg font-bold text-zinc-100 mb-2">Исповедь на сессии</h3>
-            <p class="text-sm text-zinc-300 leading-relaxed">
-              Сеньор, тимлид или фаундер приходит на сессию выгоревшим. Рассказывает про зарплаты коллег, конфликты фаундеров, финансовые трудности и стратегию стартапа.
-            </p>
-          </div>
-
-          <div class="glass-card p-6 border-t-4 border-t-amber-500">
-            <div class="text-xs font-mono text-zinc-400 mb-2">ШАГ 2</div>
-            <h3 class="text-lg font-bold text-zinc-100 mb-2">Наивная автоматизация</h3>
-            <p class="text-sm text-zinc-300 leading-relaxed">
-              Психолог честен и никого не хочет подставить. Но он транскрибирует аудиозапись встречи и... <strong>вставляет весь текст в веб-интерфейс ChatGPT</strong>!
-            </p>
-          </div>
-
-          <div class="glass-card p-6 border-t-4 border-t-rose-600 bg-rose-950/20">
-            <div class="text-xs font-mono text-rose-400 mb-2">РЕЗУЛЬТАТ</div>
-            <h3 class="text-lg font-bold text-rose-200 mb-2">Утечка в чужое облако</h3>
-            <p class="text-sm text-zinc-300 leading-relaxed">
-              Интимная жизнь человека и коммерческая тайна компании навсегда остаются в логах сторонних серверов за рубежом.
-            </p>
-          </div>
-        </div>
-
-        <div class="mt-8 p-5 rounded-xl bg-zinc-900 border border-zinc-800 text-sm text-zinc-300">
-          ⚡ <strong>Закон РБ № 99-З «О защите персональных данных»:</strong> данные граждан Беларуси должны обрабатываться внутри страны. Передача интимных клиентских сессий в зарубежные публичные облака — прямое нарушение закона. Решение — защищенные локальные ЦОД (hoster.by / beCloud).
-        </div>
-      </div>
-    </section>
-
-    <!-- SLIDE 9: Production Architecture (Zero-Knowledge) -->
-    <section class="slide" id="slide-9">
-      <div class="max-w-6xl mx-auto w-full">
-        <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-4">Архитектура</div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Zero-Knowledge: как хранить, чтобы не прочитать</h2>
-        <p class="text-zinc-400 text-lg mb-8 max-w-3xl">Главный страх пользователей: «Саня, а ты сам в базе мои секреты не читаешь?»</p>
-        
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <div class="glass-card p-6 border-l-4 border-l-cyan-500">
-            <h3 class="text-xl font-bold text-zinc-100 mb-3">Client-Side Encryption</h3>
-            <p class="text-sm text-zinc-300 leading-relaxed mb-4">
-              В продакшене запрос разработчика <code>SELECT * FROM notes</code> должен возвращать нечитаемый шум.
-            </p>
-            <ul class="text-xs text-zinc-400 space-y-2 list-disc list-inside">
-              <li>Ключи шифрования генерируются на телефоне клиента.</li>
-              <li>Сервер выступает «слепым сейфом» (Zero-Knowledge).</li>
-              <li>Даже при компрометации БД данные защищены.</li>
-            </ul>
-          </div>
-
-          <div class="glass-card p-6 border-l-4 border-l-indigo-500">
-            <h3 class="text-xl font-bold text-zinc-100 mb-3">Потоковая PII-обфускация</h3>
-            <p class="text-sm text-zinc-300 leading-relaxed mb-4">
-              Прежде чем текст коснется модели, локальный скрипт вычищает сущности на лету:
-            </p>
-            <div class="p-3 rounded-lg bg-zinc-900 border border-zinc-800 font-mono text-xs text-zinc-300 space-y-1">
-              <div class="text-rose-400 line-through">«Поругался с Олей в Минске в офисе Wargaming»</div>
-              <div class="text-emerald-400">→ «Конфликт с [Супруг] в [Город] на [Рабочее место]»</div>
-            </div>
-            <p class="text-xs text-zinc-400 mt-3">
-              Психологический вектор сохраняется на 100%, персональные данные уничтожаются до вызова API.
-            </p>
-          </div>
-        </div>
-
-        <div class="mt-8 text-center text-xs text-zinc-500">
-          *Я перечислил верхнеуровневые концепции. Если у вас есть опыт надежной потоковой де-анонимизации — обсудим в кулуарах!
-        </div>
-      </div>
-    </section>
-
-    <!-- SLIDE 10: Local SLM & Hardware Economics -->
-    <section class="slide" id="slide-10">
-      <div class="max-w-6xl mx-auto w-full">
-        <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-4">Инфраструктура</div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Зачем стрелять из 70B? Локальные SLM и железо</h2>
-        
-        <div class="glass-card overflow-hidden mb-8">
-          <div class="grid grid-cols-3 p-4 bg-zinc-900/80 border-b border-zinc-800 font-semibold text-sm">
-            <div>Параметр</div>
-            <div class="text-cyan-400">Облачные API (Gemini Flash)</div>
-            <div class="text-emerald-400">Белорусский ЦОД / On-Premise GPU</div>
-          </div>
-          <div class="divide-y divide-zinc-800/60 text-sm">
-            <div class="grid grid-cols-3 p-4 items-center">
-              <div class="text-zinc-400 font-medium">Стоимость токенов</div>
-              <div>~$0.02 / юзер в месяц</div>
-              <div>hoster.by / beCloud: ~450–600 BYN (~$140–180) / мес</div>
-            </div>
-            <div class="grid grid-cols-3 p-4 items-center">
-              <div class="text-zinc-400 font-medium">Размер модели</div>
-              <div>Гигантские 100B+</div>
-              <div><strong>14B – 32B (Qwen, Llama)</strong> в 4-bit / AWQ</div>
-            </div>
-            <div class="grid grid-cols-3 p-4 items-center">
-              <div class="text-zinc-400 font-medium">Персоны и адаптеры</div>
-              <div>Промпты в контексте</div>
-              <div>Легкие LoRA-адаптеры по 200 Мб на лету</div>
-            </div>
-            <div class="grid grid-cols-3 p-4 items-center">
-              <div class="text-zinc-400 font-medium">Приватность данных</div>
-              <div class="text-rose-400 font-bold">❌ Риск утечки в облако США</div>
-              <div class="text-emerald-400 font-bold">✅ 100% соблюдение Закона РБ № 99-З (ЦОД в Беларуси)</div>
-            </div>
-          </div>
-        </div>
-
-        <p class="text-zinc-400 text-sm text-center">
-          Для роутинга нужны быстрые микро-модели. Для психологической эмпатии не нужны знания квантовой физики — достаточно качественных открытых 14B–32B моделей в защищенном контуре.
-        </p>
-      </div>
-    </section>
-
-    <!-- SLIDE 11: Stethem Boost Bot -->
-    <section class="slide" id="slide-11">
-      <div class="max-w-6xl mx-auto w-full">
-        <div class="badge bg-amber-950 text-amber-300 border border-amber-800 mb-4">Полигон технологий</div>
-        <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">«Дружище Стетхэм»: когда мем взрывает чаты</h2>
-        <p class="text-zinc-400 text-lg mb-8 max-w-3xl">«Зеркало» — продукт сложный и долгосрочный. А Стетхэма я собрал за 3 дня на вайбкодинге для обкатки свежего агентского стека.</p>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div class="lg:col-span-7 space-y-4">
-            <div class="glass-card p-5 border-l-4 border-l-amber-500">
-              <h3 class="text-lg font-bold text-zinc-100 mb-1">Инсайт процесс-группы на 400 человек</h3>
-              <p class="text-xs text-zinc-300 leading-relaxed">
-                В конце дня 10 человек садятся в круг и 10 минут без анализа и советов просто сливают злость и мат. Стетхэм — это цифровой кореш: выругался в войс $	o$ получил брутальную поддержку и мем.
-              </p>
-            </div>
-
-            <div class="glass-card p-5 border-l-4 border-l-cyan-500">
-              <h3 class="text-lg font-bold text-zinc-100 mb-1">Архитектура под капотом</h3>
-              <ul class="text-xs text-zinc-300 space-y-1.5 list-disc list-inside">
-                <li>Граф на <strong>LangGraph</strong>.</li>
-                <li>Быстрый роутер с <strong>Tool Calling</strong>: тихо ловит имя (<code>remember_name</code>) и фидбэк.</li>
-                <li>Двухфазная генерация: скрытый <code>insight</code> мудреца $	o$ перевод на язык Стетхэма.</li>
-                <li><strong>Rolling Memory Compaction:</strong> сжимает контекст каждые 10 сообщений и помнит твои проблемы неделями.</li>
-              </ul>
-            </div>
-
-            <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-200 flex flex-col sm:flex-row items-center justify-between gap-2">
-              <span>💬 <em>«Если тебе тяжело что-то нести — представь, что ты это спиздил»</em></span>
-              <a href="https://stethem.apps.aipush.dev/" target="_blank" class="px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-mono text-xs border border-amber-500/40 transition flex items-center gap-1.5 shrink-0">
-                <span>stethem.apps.aipush.dev</span>
-                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-              </a>
-            </div>
-          </div>
-
-          <div class="lg:col-span-5 flex justify-center">
-            <div class="glass-card p-2.5 rounded-2xl border border-amber-500/40 shadow-2xl max-h-[480px] overflow-hidden flex flex-col items-center w-full max-w-sm">
-              <div class="w-full overflow-hidden rounded-xl border border-zinc-800">
-                <img src="assets/stethem.png" alt="Дружище Стетхэм" class="w-full h-auto max-h-[420px] object-cover object-center shadow-lg">
-              </div>
-              <a href="https://stethem.apps.aipush.dev/" target="_blank" class="text-[11px] text-amber-300 hover:text-white font-medium py-1.5 flex items-center gap-1.5 font-mono transition">
-                <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
-                stethem.apps.aipush.dev ↗
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SLIDE 12: Stethem in Action (Live Dialogue & Features) -->
-    <section class="slide" id="slide-12">
-      <div class="max-w-6xl mx-auto w-full">
-        <div class="badge bg-amber-950 text-amber-300 border border-amber-800 mb-3">Живой кейс</div>
-        <h2 class="text-3xl md:text-5xl font-bold mb-3 gradient-text">Стетхэм в бою: память, войсы и мем-генератор</h2>
-        <p class="text-zinc-400 text-sm md:text-base mb-6 max-w-3xl">Реальный ночной диалог с ботом: тест долгосрочной памяти, голосовой ввод и генерация артефактов на лету.</p>
-        
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
-          <!-- Screenshot of Telegram Dialogue -->
-          <div class="lg:col-span-6 flex justify-center">
-            <div class="glass-card p-2 rounded-2xl border border-amber-500/40 shadow-2xl overflow-hidden w-full max-w-lg bg-zinc-950/80">
-              <div class="rounded-xl overflow-hidden border border-zinc-800/80 max-h-[500px] flex items-center justify-center bg-zinc-900/50">
-                <img src="assets/stethem-dialogue.png" alt="Диалог со Стетхэмом в Telegram" class="w-full h-auto max-h-[500px] object-contain">
-              </div>
-              <div class="p-2.5 flex items-center justify-between text-xs text-zinc-400">
-                <span class="flex items-center gap-1.5 font-mono text-[11px] text-amber-300">
-                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
-                  Telegram: @stethemai_bot
-                </span>
-                <a href="https://stethem.apps.aipush.dev/" target="_blank" class="text-amber-400 hover:text-amber-300 font-mono text-[11px] transition flex items-center gap-1">
-                  <span>stethem.apps.aipush.dev</span>
-                  <span>↗</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Feature Breakdown Cards -->
-          <div class="lg:col-span-6 space-y-3.5">
-            <div class="glass-card p-4 border-l-4 border-l-amber-500">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-base">🧠</span>
-                <h3 class="text-base font-bold text-zinc-100">Тест долгосрочной памяти (Context Compaction)</h3>
-              </div>
-              <p class="text-xs text-zinc-300 leading-relaxed">
-                Вопрос в войсе: <em class="text-amber-200">«Что ты обо мне знаешь, расскажи?»</em><br>
-                Бот не теряет факты из прошлых сессий: помнит архитектуру проекта, борьбу с троттлингом и кулдаунами, банхаммер, внутренние токены и подготовку лендинга.
-              </p>
-            </div>
-
-            <div class="glass-card p-4 border-l-4 border-l-cyan-500">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-base">🎙️</span>
-                <h3 class="text-base font-bold text-zinc-100">Voice-First: эмоции без клавиатуры</h3>
-              </div>
-              <p class="text-xs text-zinc-300 leading-relaxed">
-                Ночью после тяжелого дебага никто не печатает длинные тексты. Пользователь наговаривает войс на 30–40 секунд $→$ Whisper транскрибирует $→$ модель моментально отвечает в брутальной мужской тональности.
-              </p>
-            </div>
-
-            <div class="glass-card p-4 border-l-4 border-l-emerald-500">
-              <div class="flex items-center gap-2 mb-1">
-                <span class="text-base">🖼️</span>
-                <h3 class="text-base font-bold text-zinc-100">Tool Calling & генератор мемов на лету</h3>
-              </div>
-              <p class="text-xs text-zinc-300 leading-relaxed">
-                Бот не просто шлет текст. Агент вызывает тул генерации мем-открытки с цитатой поверх кадра Джейсона: <em class="text-emerald-200">«Я, как первая группа крови — незаменим, но заменю любого»</em>.
-              </p>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-gradient-to-r from-amber-500/15 via-orange-500/10 to-transparent border border-amber-500/30 flex items-center justify-between gap-3">
-              <div>
-                <div class="text-xs font-semibold text-amber-200">Хотите протестировать прямо сейчас?</div>
-                <div class="text-[11px] text-zinc-400">Лендинг с описанием персоны и кнопкой перехода в бота:</div>
-              </div>
-              <a href="https://stethem.apps.aipush.dev/" target="_blank" class="px-3.5 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs shadow transition shrink-0 flex items-center gap-1.5">
-                <span>Открыть лендинг</span>
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SLIDE 13: Conclusions & Q&A -->
     <section class="slide" id="slide-13">
       <div class="max-w-6xl mx-auto w-full text-center">
         <div class="badge bg-indigo-950 text-indigo-300 border border-indigo-800 mb-6">Финал</div>
         <h2 class="text-4xl md:text-6xl font-extrabold mb-8 gradient-text">Будущее индустрии</h2>
         
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left mb-6">
           <div class="glass-card p-6 border-t-4 border-t-indigo-500">
             <h3 class="text-lg font-bold text-zinc-100 mb-2">Неизбежный тренд</h3>
             <p class="text-xs text-zinc-400 leading-relaxed">
@@ -793,10 +985,49 @@
           </div>
         </div>
 
-        <div class="p-8 rounded-2xl bg-zinc-900/80 border border-zinc-800 max-w-2xl mx-auto mb-8">
-          <h3 class="text-xl font-bold text-indigo-300 mb-2">Вопрос в зал:</h3>
+        <!-- 4th Block: 3 Core Open Challenges From The Talk -->
+        <div class="glass-card p-6 border-t-4 border-t-rose-500 text-left mb-8 bg-zinc-950/70">
+          <div class="flex items-center gap-2 mb-3">
+            <span class="text-rose-400 text-base">⚠️</span>
+            <h3 class="text-lg font-bold text-zinc-100">3 открытых вызова, которые сообществу предстоит решить:</h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs text-zinc-300">
+            <!-- Problem 1: On-premise & Quality vs Gemini -->
+            <div class="p-4 rounded-xl bg-zinc-900/80 border border-zinc-800">
+              <div class="font-bold text-rose-300 mb-1 flex items-center gap-1.5">
+                <span>1. On-Premise SLM vs Облака</span>
+              </div>
+              <div class="text-zinc-400 leading-relaxed">
+                Серверов в РБ мало, а железо дорогое. Главный вопрос: смогут ли локальные SLM (14B/32B + LoRA) отвечать так же тонко, как флагманские облачные модели (ChatGPT, Gemini, Claude), или проиграют по эмпатии?
+              </div>
+            </div>
+
+            <!-- Problem 2: Zero-Knowledge & Trust -->
+            <div class="p-4 rounded-xl bg-zinc-900/80 border border-zinc-800">
+              <div class="font-bold text-amber-300 mb-1 flex items-center gap-1.5">
+                <span>2. Zero-Knowledge и доверие</span>
+              </div>
+              <div class="text-zinc-400 leading-relaxed">
+                Открытая задача: <strong>как технически</strong> хранить данные на сервере так, чтобы их невозможно было прочесть разработчику, и <strong>как психологически</strong> доказать эту защиту клиенту?
+              </div>
+            </div>
+
+            <!-- Problem 3: Therapist Resistance -->
+            <div class="p-4 rounded-xl bg-zinc-900/80 border border-zinc-800">
+              <div class="font-bold text-cyan-300 mb-1 flex items-center gap-1.5">
+                <span>3. Страх и сопротивление терапевтов</span>
+              </div>
+              <div class="text-zinc-400 leading-relaxed">
+                Психологи боятся вытеснения. Нам нужно методично доказывать на практике: AI - это не замена живого контакта, а <strong>сверхсильный ассистент и супервизор</strong>.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-2xl bg-zinc-900/80 border border-zinc-800 max-w-2xl mx-auto mb-8">
+          <h3 class="text-lg font-bold text-indigo-300 mb-2">Вопрос к дата-инженерам в зал:</h3>
           <p class="text-sm text-zinc-300">
-            «Кто из вас уже решал задачи потоковой анонимизации данных и изолированных контуров перед LLM? Давайте обсудим в кулуарах!»
+            «Кто из вас уже решал задачи потоковой анонимизации данных и изолированных контуров перед LLM? <strong>Давайте обсудим за шашлыком! 🍢🔥</strong>»
           </p>
         </div>
 
@@ -813,6 +1044,178 @@
           </a>
           <div class="px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400">
             Спикер: <strong class="text-zinc-200">Александр Кирилов</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <section class="slide" id="slide-14">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-amber-950 text-amber-300 border border-amber-800 mb-4">Сцена после титров • P.S.</div>
+        <h2 class="text-3xl md:text-5xl font-bold mb-3 gradient-text">«Дружище Стетхэм»: проект для души и цифровой бро</h2>
+        <p class="text-zinc-400 text-sm md:text-base mb-6 max-w-3xl">
+          Пока «Зеркало» решает регуляторные задачи и безопасность, за 3 дня на чистом вайбкодинге родился «Стетхэм» - карманный бро для слива злости без терапевтических заморочек.
+        </p>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <div class="lg:col-span-7 space-y-4">
+            <div class="glass-card p-4.5 border-l-4 border-l-amber-500">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-lg">📖</span>
+                <h3 class="text-base font-bold text-zinc-100">Откуда идея: Книга цитат и процесс-группы</h3>
+              </div>
+              <p class="text-xs text-zinc-300 leading-relaxed">
+                В психотерапии есть мощнейший формат - процесс-группы: сесть и без нравоучений, советов и белых пальто выгрузить накопившуюся злость, аффект и мат. А у меня на полке как раз стояла подаренная книга с пацанскими цитатами Джейсона Стетхэма. Пазл сложился моментально.
+              </p>
+            </div>
+
+            <div class="glass-card p-4.5 border-l-4 border-l-cyan-500">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-lg">⚡</span>
+                <h3 class="text-base font-bold text-cyan-300">3 дня вайбкодинга на базе «Зеркала» и восторг друзей</h3>
+              </div>
+              <p class="text-xs text-zinc-300 leading-relaxed">
+                Взял ядро и диалоговый движок «Зеркала» и буквально за 3 дня собрал Telegram-бота. Запустил закрытый тест среди друзей - и эффект превзошел ожидания! Людям зашло на ура: карманный бро, которому можно посреди ночи выгрузить любой наболевший треш, а он по-пацански поддержит с лёгким сарказмом и пришлёт мемную открытку.
+              </p>
+            </div>
+
+            <div class="glass-card p-4.5 border-l-4 border-l-emerald-500">
+              <div class="flex items-center gap-2 mb-1.5">
+                <span class="text-lg">🛡️</span>
+                <h3 class="text-base font-bold text-emerald-300">Мужская поддержка без «лечения» и морализаторства</h3>
+              </div>
+              <p class="text-xs text-zinc-300 leading-relaxed">
+                Никакой клинической терминологии, никаких нравоучений или «подышите в пакетик». Стетхэм слушает, валидирует эмоции в крепком мужском стиле, возвращает веру в себя и напоминает, что проблемы решаемы.
+              </p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 flex flex-col items-center justify-center">
+            <div class="glass-card p-2.5 rounded-2xl border border-amber-500/40 shadow-2xl max-h-[440px] overflow-hidden flex flex-col items-center w-full max-w-sm">
+              <div class="w-full overflow-hidden rounded-xl border border-zinc-800">
+                <img src="assets/stethem.png" alt="Дружище Стетхэм" class="w-full h-auto max-h-[380px] object-cover object-center shadow-lg">
+              </div>
+              <a href="https://stethem.apps.aipush.dev/" target="_blank" class="text-[11px] text-amber-300 hover:text-white font-medium py-1.5 flex items-center gap-1.5 font-mono transition">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                stethem.apps.aipush.dev ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+        <section class="slide" id="slide-15">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-amber-950 text-amber-300 border border-amber-800 mb-2">Живой кейс</div>
+        <h2 class="text-2xl md:text-4xl font-bold mb-2 gradient-text">Живой кейс: память, поддержка и R&D</h2>
+        <p class="text-zinc-400 text-xs md:text-sm mb-4 max-w-3xl">Реальный ночной диалог с ботом: голосовой ввод, вечная память и автономный агент.</p>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+          <!-- Screenshot of Telegram Dialogue -->
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="glass-card p-2 rounded-2xl border border-amber-500/40 shadow-2xl overflow-hidden w-full max-w-md bg-zinc-950/80">
+              <div class="rounded-xl overflow-hidden border border-zinc-800/80 max-h-[460px] flex items-center justify-center bg-zinc-900/50">
+                <img src="assets/stethem-dialogue.png" alt="Диалог со Стетхэмом в Telegram" class="w-full h-auto max-h-[460px] object-contain">
+              </div>
+              <div class="p-2 flex items-center justify-between text-xs text-zinc-400">
+                <span class="flex items-center gap-1.5 font-mono text-[11px] text-amber-300">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  Telegram: @stethemai_bot
+                </span>
+                <a href="https://stethem.apps.aipush.dev/" target="_blank" class="text-amber-400 hover:text-amber-300 font-mono text-[11px] transition flex items-center gap-1">
+                  <span>stethem.apps.aipush.dev ↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature Breakdown Cards (3 focused blocks) -->
+          <div class="lg:col-span-7 space-y-2.5">
+            <!-- Block 1: Слив негатива и брутальная мужская поддержка -->
+            <div class="glass-card p-3 border-l-4 border-l-amber-500">
+              <div class="flex items-center justify-between mb-1">
+                <div class="flex items-center gap-2">
+                  <span class="text-base">🎙️</span>
+                  <h3 class="text-sm font-bold text-zinc-100">Слив негатива и брутальная мужская поддержка</h3>
+                </div>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950/80 border border-amber-500/40 text-amber-300">Voice-First + Tool Calling</span>
+              </div>
+              <p class="text-[11px] text-zinc-300 leading-relaxed">
+                Выгрузка ночного аффекта войсом на 30–40 секунд → саркастичный пацанский ответ без белых пальто и нотаций + генерация мем-открытки с цитатой Стетхэма прямо в чат.
+              </p>
+            </div>
+
+            <!-- Block 2: Вечная память & Memory Compaction -->
+            <div class="glass-card p-3 border-l-4 border-l-cyan-500">
+              <div class="flex items-center justify-between mb-1">
+                <div class="flex items-center gap-2">
+                  <span class="text-base">🧠</span>
+                  <h3 class="text-sm font-bold text-cyan-300">Вечная память & Memory Compaction</h3>
+                </div>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-cyan-950/80 border border-cyan-500/40 text-cyan-300">State Compaction</span>
+              </div>
+              <p class="text-[11px] text-zinc-300 leading-relaxed">
+                Помнит ВСЁ о пользователе, а не только последнюю реплику. Ключевые вехи, имена, даты и факты сжимаются (compaction) в структурированный профиль, никогда не стираются и динамически подмешиваются в контекст генерации.
+              </p>
+            </div>
+
+            <!-- Block 3: R&D (Brightly Highlighted - 3 directions) -->
+            <div class="p-3 rounded-xl bg-gradient-to-br from-amber-500/15 via-zinc-900/90 to-emerald-950/30 border-2 border-amber-400/60 shadow-lg shadow-amber-950/20 space-y-2">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="text-base">🚀</span>
+                  <h3 class="text-sm font-bold text-amber-300">Планы в R&D: автономный агент будущего</h3>
+                </div>
+                <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-300 font-bold uppercase">В разработке</span>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-2 text-xs text-zinc-300">
+                <div class="p-2 rounded-lg bg-zinc-950/70 border border-zinc-800 flex flex-col justify-between">
+                  <div>
+                    <div class="font-bold text-zinc-100 text-[11px] mb-1 flex items-center gap-1">
+                      <span class="text-amber-400">⚡</span>
+                      <span>Автономная проактивность</span>
+                    </div>
+                    <p class="text-[10px] text-zinc-400 leading-snug">
+                      Не по крону: LLM сама решает написать первым: <em class="text-amber-200">«Дружище, ты как?»</em> с контекстом вчерашней проблемы.
+                    </p>
+                  </div>
+                </div>
+                <div class="p-2 rounded-lg bg-zinc-950/70 border border-zinc-800 flex flex-col justify-between">
+                  <div>
+                    <div class="font-bold text-zinc-100 text-[11px] mb-1 flex items-center gap-1">
+                      <span class="text-emerald-400">🏆</span>
+                      <span>Отчёт тепла и признания</span>
+                    </div>
+                    <p class="text-[10px] text-zinc-400 leading-snug">
+                      Раз в неделю хвалит за стойкость и успехи там, где было тяжело. То признание, которого нам так не хватает.
+                    </p>
+                  </div>
+                </div>
+                <div class="p-2 rounded-lg bg-zinc-950/70 border border-zinc-800 flex flex-col justify-between">
+                  <div>
+                    <div class="font-bold text-zinc-100 text-[11px] mb-1 flex items-center gap-1">
+                      <span class="text-cyan-400">👥</span>
+                      <span>Консьерж групповых чатов</span>
+                    </div>
+                    <p class="text-[10px] text-zinc-400 leading-snug">
+                      Саммари 400 непрочитанных за 5 дней + разрядить перепалку пацанским комментарием по запросу.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Landing link banner -->
+            <div class="p-2 rounded-xl bg-zinc-900/80 border border-zinc-800 flex items-center justify-between gap-3">
+              <div class="text-[11px] text-zinc-400">
+                Хотите протестировать бота прямо сейчас? <span class="text-zinc-200 font-medium">Лендинг и бот открыты:</span>
+              </div>
+              <a href="https://stethem.apps.aipush.dev/" target="_blank" class="px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs shadow transition shrink-0 flex items-center gap-1.5">
+                <span>stethem.apps.aipush.dev</span>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
@@ -928,5 +1331,305 @@
     // Initial setup
     updateSlideUI();
   </script>
+
+  <!-- SPEAKER CHEAT SHEET SLIDE-OUT DRAWER -->
+  <div id="cheatDrawerBackdrop" onclick="toggleCheatSheet()" class="fixed inset-0 bg-black/70 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+  
+  <div id="cheatDrawer" class="fixed top-0 right-0 bottom-0 w-full sm:w-[540px] md:w-[620px] bg-zinc-950 border-l border-zinc-800 z-50 transform translate-x-full transition-transform duration-300 ease-out shadow-2xl flex flex-col">
+    <!-- Header -->
+    <div class="p-4 border-b border-zinc-800 bg-zinc-900/90 flex items-center justify-between shrink-0">
+      <div class="flex items-center gap-2.5">
+        <span class="text-xl">📝</span>
+        <div>
+          <div class="text-sm font-bold text-zinc-100">Шпаргалка спикера</div>
+          <div class="text-[11px] text-zinc-400">15 слайдов • Тайминг 24-27 мин</div>
+        </div>
+      </div>
+      <div class="flex items-center gap-2">
+        <button onclick="copyCheatSheet()" id="copyBtn" class="px-3 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-medium transition flex items-center gap-1.5 shadow">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+          <span id="copyText">Скопировать всё</span>
+        </button>
+        <button onclick="toggleCheatSheet()" class="p-1.5 rounded-lg hover:bg-zinc-800 text-zinc-400 hover:text-white transition">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Scrollable Body (Obsidian / Markdown Style) -->
+    <div id="cheatSheetBody" class="flex-1 overflow-y-auto p-6 space-y-2 select-text font-sans bg-zinc-950/95">
+<h1 class="text-2xl font-black text-indigo-300 mb-2 mt-4 pb-2 border-b border-zinc-800">🎤 Шпаргалка спикера (DataBuy Meetup, 19.09.2026)</h1>
+<div class="text-xs text-zinc-400 mb-1"><strong class="text-zinc-100 font-semibold">Тема:</strong> ИИ-инструменты в психотерапии: проблемы и возможности</div>
+<div class="text-xs text-zinc-400 mb-1"><strong class="text-zinc-100 font-semibold">Спикер:</strong> Александр Кирилов</div>
+<div class="text-xs text-zinc-400 mb-1"><strong class="text-zinc-100 font-semibold">Общий тайминг:</strong> 24-27 минут + Q&A (15 слайдов)</div>
+<hr class="border-zinc-800 my-4" />
+<h2 class="text-base font-bold text-amber-300 mt-6 mb-2 flex items-center gap-2"><span class="text-indigo-400">▶</span> [00:00 - 01:00] Слайд 1. Титульный</h2>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Хук:</strong> Стык LLM и глубинной психотерапии.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Посыл:</strong> Почему рынок взорвется, как устроено «Зеркало», зачем нужен «Стетхэм», и главные инженерные грабли продакшена.</li>
+<div class="p-3 my-2.5 rounded-xl bg-indigo-950/40 border-l-4 border-indigo-500 text-xs text-zinc-200 leading-relaxed italic">🎙️ <strong class="text-indigo-300 not-italic">Спич:</strong> «Привет всем! Меня зовут Александр Кирилов. Сегодня я хочу поднять тему, которая находится на стыке двух миров: с одной стороны – хардкорная дата-инженерия, архитектура данных и большие языковые модели, а с другой – глубинная психотерапия, живой человеческий контакт и интимнейшие тайны людей. Мы разберём, почему этот рынок неизбежно взорвётся в ближайшие 2-3 года, как изнутри устроено "Зеркало", зачем появился "Дружище Стетхэм", и на какие жестокие инженерные грабли мы наступаем прямо сейчас в продакшене при работе с чувствительными данными.»</div>
+<h2 class="text-base font-bold text-amber-300 mt-6 mb-2 flex items-center gap-2"><span class="text-indigo-400">▶</span> [01:00 - 03:00] Слайд 2. Кто я (20 лет с данными)</h2>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Highload:</strong> Одноклассники (40M DAU, Java).</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">ML:</strong> InData Labs (Lead Data & High-Load Engineer в связке с Data Scientists: InfluencEye, NoginX).</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Pfizer:</strong> RedCap Cloud (CDC, Debezium, Kafka Connect, ClickHouse).</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Вектор:</strong> Applied AI Systems Engineering & AIDD.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Психология:</strong> 4 года практики (личка, группы, интенсивы на 400 человек, 1-я ступень гештальта).</li>
+<div class="p-3 my-2.5 rounded-xl bg-indigo-950/40 border-l-4 border-indigo-500 text-xs text-zinc-200 leading-relaxed italic">🎙️ <strong class="text-indigo-300 not-italic">Спич:</strong> «Пару слов о том, почему я вообще имею право об этом говорить. В IT я уже больше 20 лет. Начинал с хардкорного бэкенда и хайлоада: в московских Одноклассниках на Java пилил платформу под 40 миллионов активных пользователей в сутки. Потом руководил дата-инженерией и бэкендом в минской InData Labs – мы рука об руку с дата-саентистами строили первые ML-продукты: InfluencEye для семантического анализа аудитории и систему автобиддинга рекламы NoginX. Последние 4 года строил платформу сбора клинических испытаний в RedCap Cloud под строжайшим комплаенсом Pfizer – стриминг данных, CDC, Debezium, Kafka Connect и ClickHouse для тяжелой аналитики. Сейчас мой фокус – Applied AI Systems Engineering и AI-Driven Development. Но есть и вторая сторона: я 4 года в психотерапевтической практике – личная терапия, регулярные группы, ежегодные выездные интенсивы на 400 человек и законченная 1-я ступень гештальт-подхода. Так что я одинаково хорошо понимаю и боль инженера, и боль психотерапевта.»</div>
+<h2 class="text-base font-bold text-amber-300 mt-6 mb-2 flex items-center gap-2"><span class="text-indigo-400">▶</span> [03:00 - 05:00] Слайд 3. Слон в комнате: как мы и терапевты используем LLM</h2>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Личное:</strong> «Почини меня» - разбор переписок с девушкой, терки с боссом со стороны третьего лица.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Психологи:</strong> 5-10 лет стажа несут кейсы в ChatGPT вместо дорогих супервизоров.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Боль не-айтишников:</strong> нет Obsidian/памяти → переполнение контекста → галлюцинации → слив секретов в облако США.</li>
+<div class="p-3 my-2.5 rounded-xl bg-indigo-950/40 border-l-4 border-indigo-500 text-xs text-zinc-200 leading-relaxed italic">🎙️ <strong class="text-indigo-300 not-italic">Спич:</strong> «Давайте признаемся честно: в этой комнате сидят инженеры, и каждый из нас хоть раз открывал ChatGPT не с запросом "почини код" или "напиши SQL", а со словами "почини меня". Мы скармливаем чату переписки с партнершей, терки с тимлидом, эмоциональные качели, пытаясь взглянуть на себя со стороны третьего лица. И самое поразительное – анализ LLM часто пугающе точен! Но слон в комнате в другом: реальные практикующие психологи с 5-10 годами стажа делают ровно то же самое. Они несут клиентские кейсы в публичные модели вместо дорогих супервизоров. Но психологи – не айтишники. У них нет Obsidian, нет базы знаний: всё пишется в одно бесконечное окно чата. В итоге контекст раздувается, модель галлюцинирует, факты теряются, а интимнейшие исповеди клиентов улетают в открытые американские облака.»</div>
+<h2 class="text-base font-bold text-amber-300 mt-6 mb-2 flex items-center gap-2"><span class="text-indigo-400">▶</span> [05:00 - 07:00] Слайд 4. Рождение «Зеркала»: от костылей к специализированному сервису</h2>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Почему Telegram:</strong> Без VPN, без платных зарубежных подписок, открыт у каждого в кармане, нативные войсы.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Два мира в одном боте (скриншот меню):</strong></li>
+<li class="text-xs text-zinc-400 leading-relaxed ml-8 list-circle"><em class="text-zinc-300">Для клиента:</em> Дневник-сессия, МАК-сессия, Мой анализ, подбор терапевта.</li>
+<li class="text-xs text-zinc-400 leading-relaxed ml-8 list-circle"><em class="text-zinc-300">Для терапевта:</em> Реестр клиентов (👥 Клиенты), сохранение заметок после встреч, AI-супервизор.</li>
+<div class="p-3 my-2.5 rounded-xl bg-indigo-950/40 border-l-4 border-indigo-500 text-xs text-zinc-200 leading-relaxed italic">🎙️ <strong class="text-indigo-300 not-italic">Спич:</strong> «Так родился проект "Зеркало". То, что люди мучительно пытались делать через веб-чат, требовало отдельного продукта. Почему мы выбрали Telegram? Никаких VPN, никаких зарубежных карт и платных подписок – он уже в кармане у каждого, плюс нативный голосовой ввод. Внутри одного бота мы разделили систему на два изолированных мира: мир клиента – где есть безопасный AI-дневник, МАК-карты и аналитика, и мир терапевта – кабинет специалиста со списком клиентов, клиническими заметками и супервизором.»</div>
+<h2 class="text-base font-bold text-amber-300 mt-6 mb-2 flex items-center gap-2"><span class="text-indigo-400">▶</span> [07:00 - 09:00] Слайд 5. Клиентский мир: AI-дневник и персоны вместо советов</h2>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Гештальт-подход:</strong> Советы запрещены! Человеку нужно не «пойди поговори с ней», а легализация чувств и отражение.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">4 персоны под характер:</strong> Катя (провокатор), Мамочка (безусловное принятие), Джек Воробей (бунтарь), Ялом (мудрец).</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Голосовой ввод:</strong> Выгрузка аффекта за 30 секунд в машине или ночью (скриншот живого войса с Мамочкой).</li>
+<div class="p-3 my-2.5 rounded-xl bg-indigo-950/40 border-l-4 border-indigo-500 text-xs text-zinc-200 leading-relaxed italic">🎙️ <strong class="text-indigo-300 not-italic">Спич:</strong> «Первый мир – клиентский. И здесь ключевой инсайт из гештальт-терапии: советы запрещены! Человеку в стрессе не нужны дурацкие советы вроде "пойди и поговори с ней". Человеку нужна легализация чувств и отражение. Поэтому вместо безликого бота мы сделали 4 полярные персоны: "Мамочка" – для безусловного принятия и тепла; провокативная "Катя" – рубит правду-матку и не дает упиваться жалостью; бунтарь "Джек Воробей" – когда тошно от долгов и обязательств; и мудрец "Ялом" – экзистенциальная глубина. Пользователь едет ночью в машине, за 40 секунд наговаривает войс, система ловит эмоцию и возвращает точное зеркало без токсичного позитива.»</div>
+<h2 class="text-base font-bold text-amber-300 mt-6 mb-2 flex items-center gap-2"><span class="text-indigo-400">▶</span> [09:00 - 11:30] Слайд 6. Инженерный инсайт: сбор датасета мини-сессий и сквозная линковка</h2>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Честный взгляд фаундера:</strong> «Мало кто будет годами вести дневник ради дневника. Дневник - это сбор уникального датасета мини-сессий, которых нет в открытом доступе!»</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Сквозная линковка (Клиент ⟷ Терапевт):</strong></li>
+<li class="text-xs text-zinc-400 leading-relaxed ml-8 list-circle">Клиент линкуется со своим реальным терапевтом в боте.</li>
+<li class="text-xs text-zinc-400 leading-relaxed ml-8 list-circle">Клиент надиктовывает дневник между встречами. Терапевт фиксирует клинические заметки после сессий.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Как система растит супервизора:</strong></li>
+<li class="text-xs text-zinc-400 leading-relaxed ml-8 list-circle">Терапевт запрашивает анализ по клиенту.</li>
+<li class="text-xs text-zinc-400 leading-relaxed ml-8 list-circle">Система видит <strong class="text-zinc-100 font-semibold">и</strong> заметки специалиста, <strong class="text-zinc-100 font-semibold">и</strong> динамику дневника клиента.</li>
+<li class="text-xs text-zinc-400 leading-relaxed ml-8 list-circle"><strong class="text-zinc-100 font-semibold">Приватность:</strong> Терапевт <em class="text-zinc-300">НЕ видит</em> интимный текст дневника! Но AI на основе этих скрытых данных выдает терапевту слепые зоны, сопротивления и подходящие интервенции.</li>
+<div class="p-3 my-2.5 rounded-xl bg-indigo-950/40 border-l-4 border-indigo-500 text-xs text-zinc-200 leading-relaxed italic">🎙️ <strong class="text-indigo-300 not-italic">Спич:</strong> «А теперь честный инженерный взгляд фаундера. Ни один живой человек не будет годами дисциплинированно вести дневник ради дневника. Дневник – это инструмент сбора уникального датасета мини-сессий, которых в открытом интернете просто не существует! И здесь мы реализовали сквозную линковку: клиент привязывает своего реального психолога в боте. Клиент надиктовывает свои состояния между встречами, а терапевт фиксирует клинические заметки после сессий. Когда терапевт просит у системы супервизию, AI анализирует оба потока данных! Но самый важный этический момент: терапевт НЕ видит интимный текст дневника клиента! Доступ есть только у модели, которая на основе скрытого контекста подсвечивает терапевту слепые зоны, динамику и точки сопротивления.»</div>
+<h2 class="text-base font-bold text-amber-300 mt-6 mb-2 flex items-center gap-2"><span class="text-indigo-400">▶</span> [11:30 - 13:30] Слайд 7. B2T: Куда вести сессию? Спасение от растерянности</h2>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Боль специалистов (даже 2-3 года опыта):</strong> Терапевты теряются, не знают, какую фигуру брать на 5-й встрече, боятся ошибиться с интервенцией. Сессия вязнет, клиент уходит.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">3 источника данных для LLM:</strong></li>
+<p class="text-xs text-zinc-400 my-1 ml-6">1. AI-дневник клиента (живые слепки между сессиями).</p>
+<p class="text-xs text-zinc-400 my-1 ml-6">2. База заметок терапевта после встреч.</p>
+<p class="text-xs text-zinc-400 my-1 ml-6">3. В перспективе - аудио/видео сессий (с согласия) для отслеживания телески и пауз.</p>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Инструмент под рукой:</strong> Мощный аналитический центр + рекомендательный движок интервенций. Терапевт заходит в кабинет с готовой <em class="text-zinc-300">предсессионной сводкой</em>.</li>
+<div class="p-3 my-2.5 rounded-xl bg-indigo-950/40 border-l-4 border-indigo-500 text-xs text-zinc-200 leading-relaxed italic">🎙️ <strong class="text-indigo-300 not-italic">Спич:</strong> «Второй мир – кабинет терапевта. Знаете, в чём главная реальная боль психологов, даже с опытом 2-3 года? Они теряются! На 5-6 сессии наступает тупик: какую фигуру брать, куда вести клиента, какую интервенцию делать? Терапевт боится ошибиться, сессия вязнет, клиент разочаровывается и уходит. "Зеркало" даёт терапевту аналитический экзоскелет. Модель синтезирует три источника: дневник клиента, архив заметок терапевта, а в перспективе – аудиозапись сессии. Терапевт перед встречей открывает готовую предсессионную сводку: динамика за неделю, ключевые триггеры, слепые зоны и рекомендованные гештальт-техники. Сессия спасена.»</div>
+<h2 class="text-base font-bold text-amber-300 mt-6 mb-2 flex items-center gap-2"><span class="text-indigo-400">▶</span> [13:30 - 15:30] Слайд 8. Поиск терапевта: крутой Instagram не значит классный психолог</h2>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Парадокс раскрутки:</strong> Маркетинг ≠ профессионализм. Глубокие практики часто не умеют продавать себя.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Опасность инста-психологии:</strong> Раскрученные аккаунты с фотосессиями нередко принадлежат крайне посредственным специалистам, которые могут <strong class="text-zinc-100 font-semibold">навредить клиенту</strong>. Алгоритмы соцсетей продвигают бюджет и хайп, а не терапевтическую безопасность.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">LLM-мэтчинг:</strong> Подбор по контексту дневника и <strong class="text-zinc-100 font-semibold">реальному трек-рекорду помощи</strong> в похожих кейсах (соматика, сепарация, ПТСР).</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Справедливый баланс:</strong> Психологу не нужно становиться инста-блогером, а клиент получает реальную пользу (92%), а не жертву таргета.</li>
+<div class="p-3 my-2.5 rounded-xl bg-indigo-950/40 border-l-4 border-indigo-500 text-xs text-zinc-200 leading-relaxed italic">🎙️ <strong class="text-indigo-300 not-italic">Спич:</strong> «Следующая колоссальная проблема – поиск терапевта. Сегодня в соцсетях правит маркетинг: выигрывает тот, кто вливает тысячи долларов в таргет и снимает яркие рилсы. Но крутой блог не равен хорошему психологу! Огромное количество глубоких, матерых специалистов терпеть не могут вести соцсети. А на вершине рекомендаций часто оказываются посредственные инста-психологи, которые могут навредить клиенту. Клиент меняет по 3-5 специалистов, сливает деньги и теряет веру в терапию. Наше решение – алгоритмический LLM-мэтчинг: система анализирует слепок переживаний человека из дневника и подбирает терапевта по реальному трек-рекорду успешной работы с похожими кейсами – будь то соматика, сепарация или ПТСР. 92% точности попадания без всякого инста-хайпа.»</div>
+<h2 class="text-base font-bold text-amber-300 mt-6 mb-2 flex items-center gap-2"><span class="text-indigo-400">▶</span> [15:30 - 17:30] Слайд 9. Безопасность и нарушение закона: Иллюзия локальности данных</h2>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Схема утечки:</strong> Кабинет (Минск) → Сервер и БД в РБ (hoster.by / beCloud) → Скрытый HTTP-запрос к Cloud LLM → Облако США (OpenAI/Anthropic).</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Иллюзия:</strong> «Сервер в РБ, закон соблюден».</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Реальность:</strong> Промпт с интимными тайнами и коммерческой тайной компании навсегда оседает в логах США. Прямое нарушение Закона РБ № 99-З!</li>
+<div class="p-3 my-2.5 rounded-xl bg-indigo-950/40 border-l-4 border-indigo-500 text-xs text-zinc-200 leading-relaxed italic">🎙️ <strong class="text-indigo-300 not-italic">Спич:</strong> «А теперь спускаемся на уровень архитектуры данных и попадаем в кошмар безопасности. Большинство стартапов в РБ ставят бэкенд на hoster.by или beCloud и гордо заявляют: "Наши сервера в Беларуси, Закон 99-З о персональных данных соблюдён!". Но как работает их AI? Пользователь шлёт в чат интимнейшую проблему, бэкенд формирует промпт и делает скрытый HTTP-запрос в OpenAI или Anthropic в США. Иллюзия рушится! Все тайны клиента и коммерческая тайна сервиса навсегда оседают в логах американских дата-центров. Для ментального здоровья это абсолютный нонсенс и юридическое самоубийство.»</div>
+<h2 class="text-base font-bold text-amber-300 mt-6 mb-2 flex items-center gap-2"><span class="text-indigo-400">▶</span> [17:30 - 19:30] Слайд 10. Решение безопасности: локальный On-Premise граф</h2>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Ансамбль моделей:</strong> Fast Router (SLM ~3B, ~40ms) + Deep Core (SLM 14B/32B AWQ 4-bit) + динамические LoRA-адаптеры (🌸 Мамочка, ⚡ Катя, 🎩 Ялом, 🕶️ Стетхэм).</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-cyan-300 font-semibold">Дистилляция знаний (Knowledge Distillation):</strong> Откуда у 14B берется эмпатия? Обучаем Student-модель на CoT-рассуждениях облачных флагманов (Teacher) для работы внутри приватного контура.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Железо в ЦОД РБ:</strong> 1× RTX 4090 (24GB VRAM) в hoster.by / beCloud (~450-600 BYN / $140-180/мес) = 100% изоляция данных и полное соблюдение Закона № 99-З.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><em class="text-zinc-300">Открытый вопрос качества:</em> Будут ли дистиллированные локальные SLM формулировать ответы так же глубоко, как флагманские облачные модели (ChatGPT, Gemini, Claude)? Предстоит много тестов после дистилляции.</li>
+<div class="p-3 my-2.5 rounded-xl bg-indigo-950/40 border-l-4 border-indigo-500 text-xs text-zinc-200 leading-relaxed italic">🎙️ <strong class="text-indigo-300 not-italic">Спич:</strong> «Наш ответ – полностью локальный On-Premise граф. Мы развернули двухуровневый ансамбль: быстрый роутер SLM ~3B за 40 миллисекунд классифицирует аффект и выбирает стратегию, а ядро – SLM 14B или 32B с 4-битным квантованием AWQ – генерирует глубокий терапевтический ответ. Поверх динамически подключаются LoRA-адаптеры наших персон. Откуда у компактной модели на 14 миллиардов параметров берётся терапевтическая глубина? Здесь работает дистилляция знаний: мы берём флагманские облачные модели в роли учителей, они генерируют эталонные цепочки рассуждений гештальт-сессий, и на них мы обучаем локальную модель-ученика. Всё это крутится на одной видеокарте RTX 4090 на 24 гигабайта в ЦОД Минска за 150-180 долларов в месяц. Полный суверенитет данных! Но открытый инженерный вопрос остаётся: смогут ли дистиллированные локальные модели на длинной дистанции держать тонкость эмпатии на уровне флагманов ChatGPT, Gemini или Claude? Это предмет наших постоянных замеров.»</div>
+<h2 class="text-base font-bold text-amber-300 mt-6 mb-2 flex items-center gap-2"><span class="text-indigo-400">▶</span> [19:30 - 21:00] Слайд 11. Zero-Knowledge: как хранить, чтобы не прочитать? (Открытый вопрос)</h2>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">«А ты в базе мои секреты не читаешь?»</strong></li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Client-Side Encryption:</strong> Ключи на телефоне, сервер - слепой сейф. Но как строить контекст?</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Потоковая PII-обфускация:</strong> Замена имен и компаний на токены. Не убивает ли это психологическую ткань?</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><em class="text-zinc-300">Открытый инженерный вызов: как хранить данные в БД так, чтобы их невозможно было прочесть? Обсудим за шашлыком!</em></li>
+<div class="p-3 my-2.5 rounded-xl bg-indigo-950/40 border-l-4 border-indigo-500 text-xs text-zinc-200 leading-relaxed italic">🎙️ <strong class="text-indigo-300 not-italic">Спич:</strong> «Следующий фундаментальный вызов – Zero-Knowledge. Первый вопрос любого думающего клиента: "А ты, разработчик, мои исповеди в базе читаешь?". И если честно – в обычной архитектуре администратор БД видит всё. Мы исследуем Client-Side Encryption: ключи шифрования хранятся на устройстве пользователя, а для сервера база данных – просто слепой набор байт. Но здесь возникает сложнейшая инженерная дилемма: если данные зашифрованы на клиенте, как строить контекст и передавать историю сессий в локальную модель без расшифровки на сервере? Потоковая PII-обфускация частично решает проблему, но вычищение сущностей ломает тонкую психологическую ткань контекста. Как хранить данные так, чтобы их технически невозможно было прочитать администратору, и как доказать это пользователю? Коллеги-инженеры, если у вас есть элегантные решения – давайте устроим мозговой штурм за шашлыком!»</div>
+<h2 class="text-base font-bold text-amber-300 mt-6 mb-2 flex items-center gap-2"><span class="text-indigo-400">▶</span> [21:00 - 23:00] Слайд 12. Страх терапевтов: «AI пришел меня заменить?»</h2>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Человеческий фактор:</strong> Матерые психотерапевты яростно сопротивляются LLM, обесценивают идею и цепляются за старое из-за скрытого страха потери профессии.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Суть терапии:</strong> Феномен живого свидетеля и телесность (дрожь в голосе, соматика, контакт). Телефон этого не заменит никогда.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Главный посыл при продвижении:</strong> AI - не замена терапевту! Это мощнейший супервизор и аналитический экзоскелет, делающий работу глубже и освобождающий от рутины. Двухпанельный мем «Без AI» vs «С AI-ассистентом».</li>
+<div class="p-3 my-2.5 rounded-xl bg-indigo-950/40 border-l-4 border-indigo-500 text-xs text-zinc-200 leading-relaxed italic">🎙️ <strong class="text-indigo-300 not-italic">Спич:</strong> «Но кроме технической безопасности есть ещё один огромный барьер – страх самих специалистов. Когда приходишь к опытным психотерапевтам с 10-15 годами практики, натыкаешься на стену обесценивания и сарказма: "Железяка никогда не заменит живой контакт!". И за этим сарказмом прячется глубокий страх: "AI придёт и отнимет мою работу". Мы в "Зеркале" категорически заявляем: живого человека заменить невозможно! Сердце психотерапии – это телесный контакт, дрожь в голосе, паузы и феномен "живого свидетеля". Телефон не заменит объятий и присутствия. AI – это не замена психотерапевта, это его экзоскелет и супервизор. Посмотрите на слайд: без AI терапевт тонет в рутине, страдает от тупиков и выгорает. С AI – терапевт избавлен от писанины, видит динамику и опирается на клинический суфлер.»</div>
+<h2 class="text-base font-bold text-amber-300 mt-6 mb-2 flex items-center gap-2"><span class="text-indigo-400">▶</span> [23:00 - 25:00] Слайд 13. Финал: Будущее индустрии, 3 открытых вызова и Нетворкинг</h2>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">3 главных тренда:</strong> Неизбежность AI-инструментов, победа Zero-Knowledge безопасности и уникальный датасет ментальности СНГ (соматика и культурный код вместо американского CBT).</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">3 открытых вызова (о чём доклад и где нужны идеи):</strong></li>
+<p class="text-xs text-zinc-400 my-1 ml-6">1. <em class="text-zinc-300">On-Premise SLM vs Облака:</em> Серверов мало, железо дорогое. Смогут ли локальные модели (14B/32B AWQ + LoRA) выдавать эмпатию уровня флагманских облачных моделей (ChatGPT, Gemini, Claude)?</p>
+<p class="text-xs text-zinc-400 my-1 ml-6">2. <em class="text-zinc-300">Zero-Knowledge и доверие:</em> Как технически хранить данные в БД так, чтобы их не прочитал админ, и как психологически доказать клиенту, что бэкенд «слепой»?</p>
+<p class="text-xs text-zinc-400 my-1 ml-6">3. <em class="text-zinc-300">Страх и сопротивление терапевтов:</em> Нужно методично объяснять и показывать: AI - это экзоскелет и супервизор, а не замена контакта.</p>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Вопрос в зал:</strong> «Кто решал задачи защищенного хранения, дистилляции и доверия перед LLM? <strong>Давайте обсудим за шашлыком! 🍢🔥</strong>»</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><em class="text-zinc-300">Ссылки: mirror.apps.aipush.dev, Александр Кирилов</em>.</li>
+<div class="p-3 my-2.5 rounded-xl bg-indigo-950/40 border-l-4 border-indigo-500 text-xs text-zinc-200 leading-relaxed italic">🎙️ <strong class="text-indigo-300 not-italic">Спич:</strong> «Подводя итог: мы стоим на пороге тектонического сдвига. AI-инструменты неизбежно войдут в каждый терапевтический кабинет. Победят решения с суверенной Zero-Knowledge архитектурой и датасетами, обученными на нашей ментальности – соматике и телесности, а не сухом западном CBT. Перед нами стоят 3 ключевых вызова: качество локальных SLM против облачных гигантов, математическая криптография доверия и преодоление сопротивления терапевтов. Кто из вас решал подобные задачи дистилляции, конфиденциальных вычислений и Zero-Knowledge? Давайте знакомиться, обмениваться идеями и обсуждать прямо сейчас – за шашлыком! Спасибо!»</div>
+<h2 class="text-base font-bold text-amber-300 mt-6 mb-2 flex items-center gap-2"><span class="text-indigo-400">▶</span> [25:00 - 26:30] Слайд 14. Сцена после титров • P.S. «Дружище Стетхэм: проект для души и цифровой бро»</h2>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Откуда идея: Книга цитат и процесс-группы:</strong></li>
+<li class="text-xs text-zinc-400 leading-relaxed ml-8 list-circle">В психотерапии есть формат процесс-групп: сесть и без нравоучений, советов и белых пальто выгрузить накопившуюся злость, аффект и мат.</li>
+<li class="text-xs text-zinc-400 leading-relaxed ml-8 list-circle">У Александра на полке как раз стояла подаренная книга с пацанскими цитатами Джейсона Стетхэма. Пазл сложился моментально!</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">3 дня вайбкодинга на базе «Зеркала»:</strong> Взял ядро диалогового движка «Зеркала» и за 3 дня собрал Telegram-бота (войсы, пацанская поддержка с сарказмом, генерация мемных открыток).</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Восторг друзей:</strong> Запустил закрытый тест среди друзей - зашло на ура! Без заумных терапевтических заморочек: карманный бро в телефоне, которому можно среди ночи слить всё наболевшее, а он по-пацански поддержит.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Мужская поддержка без морализаторства:</strong> Никакой терминологии, никаких нравоучений или «подышите в пакетик». Стетхэм слушает, валидирует чувства и напоминает, что проблемы решаемы.</li>
+<div class="p-3 my-2.5 rounded-xl bg-indigo-950/40 border-l-4 border-indigo-500 text-xs text-zinc-200 leading-relaxed italic">🎙️ <strong class="text-indigo-300 not-italic">Спич:</strong> «А теперь – сцена после титров! Пока "Зеркало" требует строгого комплаенса, сложного шифрования и клинической валидации, за 3 дня на чистом вайбкодинге у меня родился проект для души – "Дружище Стетхэм". Откуда вообще взялась идея? В психотерапии есть потрясающий формат – процесс-группы. Это место, куда ты приходишь не за нравоучениями или "правильными" советами, а чтобы сесть и без всяких белых пальто выгрузить накопившуюся злость, ярость и мат. И ровно в этот момент у меня на полке стояла подаренная друзьями книга с пацанскими цитатами Джейсона Стетхэма. Пазл сошёлся моментально! Я взял готовый диалоговый движок "Зеркала", накрутил харизматичную персону Стетхэма и буквально за 3 дня собрал Telegram-бота. Он слушает войсы, саркастично и по-пацански поддерживает и генерирует мемные открытки. Я скинул ссылку друзьям – и это вызвало полный восторг! Людям зашло на ура: никаких заумных терапевтических заморочек, просто карманный бро в телефоне, которому можно в два часа ночи выгрузить наболевший треш, а он крепко скажет: "Держись, братуха, прорвёмся".»</div>
+
+<h2 class="text-base font-bold text-amber-300 mt-6 mb-2 flex items-center gap-2"><span class="text-indigo-400">▶</span> [26:30 - 27:30] Слайд 15. Живой кейс: память, поддержка и R&D</h2>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">Скриншот ночного диалога в Telegram (@stethemai_bot):</strong> Реальный ночной тест бота.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">3 ключевых блока:</strong></li>
+<li class="text-xs text-zinc-400 leading-relaxed ml-8 list-circle"><strong class="text-amber-300">Слив негатива и брутальная мужская поддержка:</strong> Ночью после тяжелого дня никто не печатает тексты. Наговорил войс на 30-40 секунд → саркастичный пацанский ответ без белых пальто и нотаций + генерация мем-открытки с цитатой Стетхэма прямо в чат.</li>
+<li class="text-xs text-zinc-400 leading-relaxed ml-8 list-circle"><strong class="text-cyan-300">Вечная память & Memory Compaction:</strong> Помнит ВСЁ о пользователе. Хранит вехи, даты, имена, контекст проектов (ночные дебаги, троттлинг, банхаммер, лендинг), которые сжимаются (compaction), никогда не стираются и динамически подмешиваются в генерацию.</li>
+<li class="text-xs text-zinc-400 leading-relaxed ml-8 list-circle"><strong class="text-emerald-300">Планы в R&D (Автономный агент будущего — 3 направления):</strong></li>
+<li class="text-xs text-zinc-400 leading-relaxed ml-12 list-disc"><em class="text-zinc-300">Автономная проактивность (не по крону):</em> LLM раз в сутки сама смотрит в БД и решает, стоит ли написать первым: «Дружище, ты как?» с точным комментарием вчерашней ситуации, обучаясь на откликах.</li>
+<li class="text-xs text-zinc-400 leading-relaxed ml-12 list-disc"><em class="text-zinc-300">Еженедельный отчёт тепла и признания:</em> Раз в неделю душевный спич – похвалить, отметить успехи там, где было тяжело, посочувствовать и дать признание (то мужское тепло, которого нам так не хватает в жизни).</li>
+<li class="text-xs text-zinc-400 leading-relaxed ml-12 list-disc"><em class="text-zinc-300">Консьерж групповых чатов:</em> Саммари 400 непрочитанных сообщений за 5 дней + разрядка перепалки пацанским комментарием по запросу.</li>
+<li class="text-xs text-zinc-300 leading-relaxed ml-4 list-disc"><strong class="text-zinc-100 font-semibold">QR / Ссылка:</strong> stethem.apps.aipush.dev - протестировать прямо сейчас.</li>
+<div class="p-3 my-2.5 rounded-xl bg-indigo-950/40 border-l-4 border-indigo-500 text-xs text-zinc-200 leading-relaxed italic">🎙️ <strong class="text-indigo-300 not-italic">Спич:</strong> «Вот живой кейс из продакшена: реальный ночной диалог со Стетхэмом. Первое – это слив негатива и брутальная мужская поддержка. Ночью после тяжелейшего дня или стресса нет сил печатать. Наговариваешь войс уставшим голосом на 30–40 секунд – бот возвращает саркастичную пацанскую поддержку без всяких "подышите в пакетик", а графический модуль на лету рендерит мем-открытку с цитатой. Второе – вечная память через Memory Compaction. На вопрос "что ты обо мне знаешь?" он не сыплет общими фразами, а помнит всю историю: ночные дебаги, борьбу с троттлингом, банхаммер, лендинг. Факты и даты сжимаются и никогда не теряются. И третье – наши планы в R&D. Здесь три вещи: во-первых, автономная проактивность: агент сам анализирует контекст и решает написать первым: "Дружище, ты как?", если вчера был тяжёлый день. Во-вторых – еженедельный отчёт тепла: раз в неделю хвалит за стойкость и успехи там, где было трудно – то мужское признание, которого нам всем не хватает. И в-третьих – консьерж групповых чатов: у каждого из нас есть чаты, куда заходишь через 5 дней, а там 400 сообщений. Стетхэм делает выжимку самого главного, а при необходимости может ворваться в чат и метким пацанским комментарием разрядить любую перепалку. Это реальная цифровизация персонального бро. Бот открыт, лендинг stethem.apps.aipush.dev работает – заходите, тестируйте! Спасибо!»</div>
+    </div>
+    
+    <!-- Hidden textarea with raw Markdown for copying -->
+    <textarea id="rawCheatMd" class="hidden"># 🎤 Шпаргалка спикера (DataBuy Meetup, 19.09.2026)
+**Тема:** ИИ-инструменты в психотерапии: проблемы и возможности  
+**Спикер:** Александр Кирилов  
+**Общий тайминг:** 24-27 минут + Q&amp;A (15 слайдов)
+
+---
+
+### [00:00 - 01:00] Слайд 1. Титульный
+* **Хук:** Стык LLM и глубинной психотерапии.
+* **Посыл:** Почему рынок взорвется, как устроено «Зеркало», зачем нужен «Стетхэм», и главные инженерные грабли продакшена.
+&gt; 🎙️ **Спич:** «Привет всем! Меня зовут Александр Кирилов. Сегодня я хочу поднять тему, которая находится на стыке двух миров: с одной стороны – хардкорная дата-инженерия, архитектура данных и большие языковые модели, а с другой – глубинная психотерапия, живой человеческий контакт и интимнейшие тайны людей. Мы разберём, почему этот рынок неизбежно взорвётся в ближайшие 2-3 года, как изнутри устроено &quot;Зеркало&quot;, зачем появился &quot;Дружище Стетхэм&quot;, и на какие жестокие инженерные грабли мы наступаем прямо сейчас в продакшене при работе с чувствительными данными.»
+
+### [01:00 - 03:00] Слайд 2. Кто я (20 лет с данными)
+* **Highload:** Одноклассники (40M DAU, Java).
+* **ML:** InData Labs (Lead Data &amp; High-Load Engineer в связке с Data Scientists: InfluencEye, NoginX).
+* **Pfizer:** RedCap Cloud (CDC, Debezium, Kafka Connect, ClickHouse).
+* **Вектор:** Applied AI Systems Engineering &amp; AIDD.
+* **Психология:** 4 года практики (личка, группы, интенсивы на 400 человек, 1-я ступень гештальта).
+&gt; 🎙️ **Спич:** «Пару слов о том, почему я вообще имею право об этом говорить. В IT я уже больше 20 лет. Начинал с хардкорного бэкенда и хайлоада: в московских Одноклассниках на Java пилил платформу под 40 миллионов активных пользователей в сутки. Потом руководил дата-инженерией и бэкендом в минской InData Labs – мы рука об руку с дата-саентистами строили первые ML-продукты: InfluencEye для семантического анализа аудитории и систему автобиддинга рекламы NoginX. Последние 4 года строил платформу сбора клинических испытаний в RedCap Cloud под строжайшим комплаенсом Pfizer – стриминг данных, CDC, Debezium, Kafka Connect и ClickHouse для тяжелой аналитики. Сейчас мой фокус – Applied AI Systems Engineering и AI-Driven Development. Но есть и вторая сторона: я 4 года в психотерапевтической практике – личная терапия, регулярные группы, ежегодные выездные интенсивы на 400 человек и законченная 1-я ступень гештальт-подхода. Так что я одинаково хорошо понимаю и боль инженера, и боль психотерапевта.»
+
+### [03:00 - 05:00] Слайд 3. Слон в комнате: как мы и терапевты используем LLM
+* **Личное:** «Почини меня» - разбор переписок с девушкой, терки с боссом со стороны третьего лица.
+* **Психологи:** 5-10 лет стажа несут кейсы в ChatGPT вместо дорогих супервизоров.
+* **Боль не-айтишников:** нет Obsidian/памяти → переполнение контекста → галлюцинации → слив секретов в облако США.
+&gt; 🎙️ **Спич:** «Давайте признаемся честно: в этой комнате сидят инженеры, и каждый из нас хоть раз открывал ChatGPT не с запросом &quot;почини код&quot; или &quot;напиши SQL&quot;, а со словами &quot;почини меня&quot;. Мы скармливаем чату переписки с партнершей, терки с тимлидом, эмоциональные качели, пытаясь взглянуть на себя со стороны третьего лица. И самое поразительное – анализ LLM часто пугающе точен! Но слон в комнате в другом: реальные практикующие психологи с 5-10 годами стажа делают ровно то же самое. Они несут клиентские кейсы в публичные модели вместо дорогих супервизоров. Но психологи – не айтишники. У них нет Obsidian, нет базы знаний: всё пишется в одно бесконечное окно чата. В итоге контекст раздувается, модель галлюцинирует, факты теряются, а интимнейшие исповеди клиентов улетают в открытые американские облака.»
+
+### [05:00 - 07:00] Слайд 4. Рождение «Зеркала»: от костылей к специализированному сервису
+* **Почему Telegram:** Без VPN, без платных зарубежных подписок, открыт у каждого в кармане, нативные войсы.
+* **Два мира в одном боте (скриншот меню):**
+  - *Для клиента:* Дневник-сессия, МАК-сессия, Мой анализ, подбор терапевта.
+  - *Для терапевта:* Реестр клиентов (👥 Клиенты), сохранение заметок после встреч, AI-супервизор.
+&gt; 🎙️ **Спич:** «Так родился проект &quot;Зеркало&quot;. То, что люди мучительно пытались делать через веб-чат, требовало отдельного продукта. Почему мы выбрали Telegram? Никаких VPN, никаких зарубежных карт и платных подписок – он уже в кармане у каждого, плюс нативный голосовой ввод. Внутри одного бота мы разделили систему на два изолированных мира: мир клиента – где есть безопасный AI-дневник, МАК-карты и аналитика, и мир терапевта – кабинет специалиста со списком клиентов, клиническими заметками и супервизором.»
+
+### [07:00 - 09:00] Слайд 5. Клиентский мир: AI-дневник и персоны вместо советов
+* **Гештальт-подход:** Советы запрещены! Человеку нужно не «пойди поговори с ней», а легализация чувств и отражение.
+* **4 персоны под характер:** Катя (провокатор), Мамочка (безусловное принятие), Джек Воробей (бунтарь), Ялом (мудрец).
+* **Голосовой ввод:** Выгрузка аффекта за 30 секунд в машине или ночью (скриншот живого войса с Мамочкой).
+&gt; 🎙️ **Спич:** «Первый мир – клиентский. И здесь ключевой инсайт из гештальт-терапии: советы запрещены! Человеку в стрессе не нужны дурацкие советы вроде &quot;пойди и поговори с ней&quot;. Человеку нужна легализация чувств и отражение. Поэтому вместо безликого бота мы сделали 4 полярные персоны: &quot;Мамочка&quot; – для безусловного принятия и тепла; провокативная &quot;Катя&quot; – рубит правду-матку и не дает упиваться жалостью; бунтарь &quot;Джек Воробей&quot; – когда тошно от долгов и обязательств; и мудрец &quot;Ялом&quot; – экзистенциальная глубина. Пользователь едет ночью в машине, за 40 секунд наговаривает войс, система ловит эмоцию и возвращает точное зеркало без токсичного позитива.»
+
+### [09:00 - 11:30] Слайд 6. Инженерный инсайт: сбор датасета мини-сессий и сквозная линковка
+* **Честный взгляд фаундера:** «Мало кто будет годами вести дневник ради дневника. Дневник - это сбор уникального датасета мини-сессий, которых нет в открытом доступе!»
+* **Сквозная линковка (Клиент ⟷ Терапевт):**
+  - Клиент линкуется со своим реальным терапевтом в боте.
+  - Клиент надиктовывает дневник между встречами. Терапевт фиксирует клинические заметки после сессий.
+* **Как система растит супервизора:**
+  - Терапевт запрашивает анализ по клиенту.
+  - Система видит **и** заметки специалиста, **и** динамику дневника клиента.
+  - **Приватность:** Терапевт *НЕ видит* интимный текст дневника! Но AI на основе этих скрытых данных выдает терапевту слепые зоны, сопротивления и подходящие интервенции.
+&gt; 🎙️ **Спич:** «А теперь честный инженерный взгляд фаундера. Ни один живой человек не будет годами дисциплинированно вести дневник ради дневника. Дневник – это инструмент сбора уникального датасета мини-сессий, которых в открытом интернете просто не существует! И здесь мы реализовали сквозную линковку: клиент привязывает своего реального психолога в боте. Клиент надиктовывает свои состояния между встречами, а терапевт фиксирует клинические заметки после сессий. Когда терапевт просит у системы супервизию, AI анализирует оба потока данных! Но самый важный этический момент: терапевт НЕ видит интимный текст дневника клиента! Доступ есть только у модели, которая на основе скрытого контекста подсвечивает терапевту слепые зоны, динамику и точки сопротивления.»
+
+### [11:30 - 13:30] Слайд 7. B2T: Куда вести сессию? Спасение от растерянности
+* **Боль специалистов (даже 2-3 года опыта):** Терапевты теряются, не знают, какую фигуру брать на 5-й встрече, боятся ошибиться с интервенцией. Сессия вязнет, клиент уходит.
+* **3 источника данных для LLM:** 
+  1. AI-дневник клиента (живые слепки между сессиями).
+  2. База заметок терапевта после встреч.
+  3. В перспективе - аудио/видео сессий (с согласия) для отслеживания телески и пауз.
+* **Инструмент под рукой:** Мощный аналитический центр + рекомендательный движок интервенций. Терапевт заходит в кабинет с готовой *предсессионной сводкой*.
+&gt; 🎙️ **Спич:** «Второй мир – кабинет терапевта. Знаете, в чём главная реальная боль психологов, даже с опытом 2-3 года? Они теряются! На 5-6 сессии наступает тупик: какую фигуру брать, куда вести клиента, какую интервенцию делать? Терапевт боится ошибиться, сессия вязнет, клиент разочаровывается и уходит. &quot;Зеркало&quot; даёт терапевту аналитический экзоскелет. Модель синтезирует три источника: дневник клиента, архив заметок терапевта, а в перспективе – аудиозапись сессии. Терапевт перед встречей открывает готовую предсессионную сводку: динамика за неделю, ключевые триггеры, слепые зоны и рекомендованные гештальт-техники. Сессия спасена.»
+
+### [13:30 - 15:30] Слайд 8. Поиск терапевта: крутой Instagram не значит классный психолог
+* **Парадокс раскрутки:** Маркетинг ≠ профессионализм. Глубокие практики часто не умеют продавать себя.
+* **Опасность инста-психологии:** Раскрученные аккаунты с фотосессиями нередко принадлежат крайне посредственным специалистам, которые могут **навредить клиенту**. Алгоритмы соцсетей продвигают бюджет и хайп, а не терапевтическую безопасность.
+* **LLM-мэтчинг:** Подбор по контексту дневника и **реальному трек-рекорду помощи** в похожих кейсах (соматика, сепарация, ПТСР).
+* **Справедливый баланс:** Психологу не нужно становиться инста-блогером, а клиент получает реальную пользу (92%), а не жертву таргета.
+&gt; 🎙️ **Спич:** «Следующая колоссальная проблема – поиск терапевта. Сегодня в соцсетях правит маркетинг: выигрывает тот, кто вливает тысячи долларов в таргет и снимает яркие рилсы. Но крутой блог не равен хорошему психологу! Огромное количество глубоких, матерых специалистов терпеть не могут вести соцсети. А на вершине рекомендаций часто оказываются посредственные инста-психологи, которые могут навредить клиенту. Клиент меняет по 3-5 специалистов, сливает деньги и теряет веру в терапию. Наше решение – алгоритмический LLM-мэтчинг: система анализирует слепок переживаний человека из дневника и подбирает терапевта по реальному трек-рекорду успешной работы с похожими кейсами – будь то соматика, сепарация или ПТСР. 92% точности попадания без всякого инста-хайпа.»
+
+### [15:30 - 17:30] Слайд 9. Безопасность и нарушение закона: Иллюзия локальности данных
+* **Схема утечки:** Кабинет (Минск) → Сервер и БД в РБ (hoster.by / beCloud) → Скрытый HTTP-запрос к Cloud LLM → Облако США (OpenAI/Anthropic).
+* **Иллюзия:** «Сервер в РБ, закон соблюден».
+* **Реальность:** Промпт с интимными тайнами и коммерческой тайной компании навсегда оседает в логах США. Прямое нарушение Закона РБ № 99-З!
+&gt; 🎙️ **Спич:** «А теперь спускаемся на уровень архитектуры данных и попадаем в кошмар безопасности. Большинство стартапов в РБ ставят бэкенд на hoster.by или beCloud и гордо заявляют: &quot;Наши сервера в Беларуси, Закон 99-З о персональных данных соблюдён!&quot;. Но как работает их AI? Пользователь шлёт в чат интимнейшую проблему, бэкенд формирует промпт и делает скрытый HTTP-запрос в OpenAI или Anthropic в США. Иллюзия рушится! Все тайны клиента и коммерческая тайна сервиса навсегда оседают в логах американских дата-центров. Для ментального здоровья это абсолютный нонсенс и юридическое самоубийство.»
+
+### [17:30 - 19:30] Слайд 10. Решение безопасности: локальный On-Premise граф
+* **Ансамбль моделей:** Fast Router (SLM ~3B, ~40ms) + Deep Core (SLM 14B/32B AWQ 4-bit) + динамические LoRA-адаптеры (🌸 Мамочка, ⚡ Катя, 🎩 Ялом, 🕶️ Стетхэм).
+* **Дистилляция знаний (Knowledge Distillation):** Откуда у 14B берется эмпатия? Обучаем Student-модель на CoT-рассуждениях облачных флагманов (Teacher) для работы внутри приватного контура.
+* **Железо в ЦОД РБ:** 1× RTX 4090 (24GB VRAM) в hoster.by / beCloud (~450-600 BYN / $140-180/мес) = 100% изоляция данных и полное соблюдение Закона № 99-З.
+* *Открытый вопрос качества:* Будут ли дистиллированные локальные SLM формулировать ответы так же глубоко, как флагманские облачные модели (ChatGPT, Gemini, Claude)? Предстоит много тестов после дистилляции.
+&gt; 🎙️ **Спич:** «Наш ответ – полностью локальный On-Premise граф. Мы развернули двухуровневый ансамбль: быстрый роутер SLM ~3B за 40 миллисекунд классифицирует аффект и выбирает стратегию, а ядро – SLM 14B или 32B с 4-битным квантованием AWQ – генерирует глубокий терапевтический ответ. Поверх динамически подключаются LoRA-адаптеры наших персон. Откуда у компактной модели на 14 миллиардов параметров берётся терапевтическая глубина? Здесь работает дистилляция знаний: мы берём флагманские облачные модели в роли учителей, они генерируют эталонные цепочки рассуждений гештальт-сессий, и на них мы обучаем локальную модель-ученика. Всё это крутится на одной видеокарте RTX 4090 на 24 гигабайта в ЦОД Минска за 150-180 долларов в месяц. Полный суверенитет данных! Но открытый инженерный вопрос остаётся: смогут ли дистиллированные локальные модели на длинной дистанции держать тонкость эмпатии на уровне флагманов ChatGPT, Gemini или Claude? Это предмет наших постоянных замеров.»
+
+### [19:30 - 21:00] Слайд 11. Zero-Knowledge: как хранить, чтобы не прочитать? (Открытый вопрос)
+* **«А ты в базе мои секреты не читаешь?»**
+* **Client-Side Encryption:** Ключи на телефоне, сервер - слепой сейф. Но как строить контекст?
+* **Потоковая PII-обфускация:** Замена имен и компаний на токены. Не убивает ли это психологическую ткань?
+* *Открытый инженерный вызов: как хранить данные в БД так, чтобы их невозможно было прочесть? Обсудим за шашлыком!*
+&gt; 🎙️ **Спич:** «Следующий фундаментальный вызов – Zero-Knowledge. Первый вопрос любого думающего клиента: &quot;А ты, разработчик, мои исповеди в базе читаешь?&quot;. И если честно – в обычной архитектуре администратор БД видит всё. Мы исследуем Client-Side Encryption: ключи шифрования хранятся на устройстве пользователя, а для сервера база данных – просто слепой набор байт. Но здесь возникает сложнейшая инженерная дилемма: если данные зашифрованы на клиенте, как строить контекст и передавать историю сессий в локальную модель без расшифровки на сервере? Потоковая PII-обфускация частично решает проблему, но вычищение сущностей ломает тонкую психологическую ткань контекста. Как хранить данные так, чтобы их технически невозможно было прочитать администратору, и как доказать это пользователю? Коллеги-инженеры, если у вас есть элегантные решения – давайте устроим мозговой штурм за шашлыком!»
+
+### [21:00 - 23:00] Слайд 12. Страх терапевтов: «AI пришел меня заменить?»
+* **Человеческий фактор:** Матерые психотерапевты яростно сопротивляются LLM, обесценивают идею и цепляются за старое из-за скрытого страха потери профессии.
+* **Суть терапии:** Феномен живого свидетеля и телесность (дрожь в голосе, соматика, контакт). Телефон этого не заменит никогда.
+* **Главный посыл при продвижении:** AI - не замена терапевту! Это мощнейший супервизор и аналитический экзоскелет, делающий работу глубже и освобождающий от рутины. Двухпанельный мем «Без AI» vs «С AI-ассистентом».
+&gt; 🎙️ **Спич:** «Но кроме технической безопасности есть ещё один огромный барьер – страх самих специалистов. Когда приходишь к опытным психотерапевтам с 10-15 годами практики, натыкаешься на стену обесценивания и сарказма: &quot;Железяка никогда не заменит живой контакт!&quot;. И за этим сарказмом прячется глубокий страх: &quot;AI придёт и отнимет мою работу&quot;. Мы в &quot;Зеркале&quot; категорически заявляем: живого человека заменить невозможно! Сердце психотерапии – это телесный контакт, дрожь в голосе, паузы и феномен &quot;живого свидетеля&quot;. Телефон не заменит объятий и присутствия. AI – это не замена психотерапевта, это его экзоскелет и супервизор. Посмотрите на слайд: без AI терапевт тонет в рутине, страдает от тупиков и выгорает. С AI – терапевт избавлен от писанины, видит динамику и опирается на клинический суфлер.»
+
+### [23:00 - 25:00] Слайд 13. Финал: Будущее индустрии, 3 открытых вызова и Нетворкинг
+* **3 главных тренда:** Неизбежность AI-инструментов, победа Zero-Knowledge безопасности и уникальный датасет ментальности СНГ (соматика и культурный код вместо американского CBT).
+* **3 открытых вызова (о чём доклад и где нужны идеи):**
+  1. *On-Premise SLM vs Облака:* Серверов мало, железо дорогое. Смогут ли локальные модели (14B/32B AWQ + LoRA) выдавать эмпатию уровня флагманских облачных моделей (ChatGPT, Gemini, Claude)?
+  2. *Zero-Knowledge и доверие:* Как технически хранить данные в БД так, чтобы их не прочитал админ, и как психологически доказать клиенту, что бэкенд «слепой»?
+  3. *Страх и сопротивление терапевтов:* Нужно методично объяснять и показывать: AI - это экзоскелет и супервизор, а не замена контакта.
+* **Вопрос в зал:** «Кто решал задачи защищенного хранения, дистилляции и доверия перед LLM? &lt;strong&gt;Давайте обсудим за шашлыком! 🍢🔥&lt;/strong&gt;»
+* *Ссылки: mirror.apps.aipush.dev, Александр Кирилов*.
+&gt; 🎙️ **Спич:** «Подводя итог: мы стоим на пороге тектонического сдвига. AI-инструменты неизбежно войдут в каждый терапевтический кабинет. Победят решения с суверенной Zero-Knowledge архитектурой и датасетами, обученными на нашей ментальности – соматике и телесности, а не сухом западном CBT. Перед нами стоят 3 ключевых вызова: качество локальных SLM против облачных гигантов, математическая криптография доверия и преодоление сопротивления терапевтов. Кто из вас решал подобные задачи дистилляции, конфиденциальных вычислений и Zero-Knowledge? Давайте знакомиться, обмениваться идеями и обсуждать прямо сейчас – за шашлыком! Спасибо!»
+
+### [25:00 - 26:30] Слайд 14. Сцена после титров • P.S. «Дружище Стетхэм: проект для души и цифровой бро»
+* **Откуда идея: Книга цитат и процесс-группы:**
+  - В психотерапии есть мощнейший формат - процесс-группы: сесть и без нравоучений, советов и белых пальто выгрузить накопившуюся злость, аффект и мат.
+  - У Александра на полке как раз стояла подаренная книга с пацанскими цитатами Джейсона Стетхэма. Пазл сложился моментально!
+* **3 дня вайбкодинга на базе «Зеркала»:**
+  - Взял ядро и диалоговый движок «Зеркала» и буквально за 3 дня собрал Telegram-бота.
+  - Бот слушает войсы, отвечает с лёгким сарказмом и крепкой пацанской поддержкой, генерирует мем-открытки с цитатами.
+* **Восторг друзей:**
+  - Запустил закрытый тест среди друзей – зашло на ура! Без терапевтических заморочек: карманный бро, которому можно среди ночи слить всё наболевшее, а он по-пацански поддержит.
+* **Мужская поддержка без морализаторства:** Никакой клинической терминологии, никаких нравоучений или «подышите в пакетик». Стетхэм слушает, возвращает веру в себя и напоминает, что проблемы решаемы.
+&gt; 🎙️ **Спич:** «А теперь – сцена после титров! Пока &quot;Зеркало&quot; требует строгого комплаенса, сложного шифрования и клинической валидации, за 3 дня на чистом вайбкодинге у меня родился проект для души – &quot;Дружище Стетхэм&quot;. Откуда вообще взялась идея? В психотерапии есть потрясающий формат – процесс-группы. Это место, куда ты приходишь не за нравоучениями или &quot;правильными&quot; советами, а чтобы сесть и без всяких белых пальто выгрузить накопившуюся злость, ярость и мат. И ровно в этот момент у меня на полке стояла подаренная друзьями книга с пацанскими цитатами Джейсона Стетхэма. Пазл сошёлся моментально! Я взял готовый диалоговый движок &quot;Зеркала&quot;, накрутил харизматичную персону Стетхэма и буквально за 3 дня собрал Telegram-бота. Он слушает войсы, саркастично и по-пацански поддерживает и генерирует мемные открытки. Я скинул ссылку друзьям – и это вызвало полный восторг! Людям зашло на ура: никаких заумных терапевтических заморочек, просто карманный бро в телефоне, которому можно в два часа ночи выгрузить наболевший треш, а он крепко скажет: &quot;Держись, братуха, прорвёмся&quot;.»
+
+### [26:30 - 27:30] Слайд 15. Живой кейс: память, поддержка и R&amp;D
+* **Скриншот ночного диалога в Telegram (@stethemai_bot):** Реальный ночной тест бота.
+* **3 ключевых блока:**
+  1. *Слив негатива и брутальная мужская поддержка:* Ночью после тяжелого дня никто не печатает тексты. Наговорил войс на 30-40 секунд → саркастичный пацанский ответ без белых пальто и нотаций + генерация мем-открытки с цитатой Стетхэма прямо в чат.
+  2. *Вечная память &amp; Memory Compaction:* Помнит ВСЁ о пользователе (а не только последнюю фразу). Хранит ключевые вехи, имена, даты, контекст проектов (ночные дебаги, троттлинг, банхаммер, лендинг), которые сжимаются (compaction), никогда не стираются и динамически подмешиваются в генерацию.
+  3. *Планы в R&amp;D (Автономный агент будущего — 3 направления):*
+     - **Автономная проактивность (не по крону):** LLM раз в сутки сама смотрит в БД и решает, стоит ли написать пользователю первым: *«Дружище, ты как?»* с точным комментарием вчерашней ситуации, обучаясь на реакциях.
+     - **Еженедельный отчёт тепла и признания:** Раз в неделю душевный спич — похвалить, отметить успехи там, где было тяжело, посочувствовать и дать признание (то мужское тепло, которого нам так не хватает в жизни).
+     - **Консьерж групповых чатов:** Саммаризация сотен непрочитанных сообщений и войсов (когда заходишь в чат через 5 дней, а там 400 реплик) + разрядка обстановки пацанским комментарием в перепалках. Цифровизация личного AI-бро.
+* **QR / Ссылка:** stethem.apps.aipush.dev - протестировать прямо сейчас.
+&gt; 🎙️ **Спич:** «Вот живой кейс из продакшена: реальный ночной диалог со Стетхэмом. Первое – это слив негатива и брутальная мужская поддержка. Ночью после тяжелейшего дня или стресса нет сил печатать. Наговариваешь войс уставшим голосом на 30–40 секунд – бот возвращает саркастичную пацанскую поддержку без всяких &quot;подышите в пакетик&quot;, а графический модуль на лету рендерит мем-открытку с цитатой. Второе – вечная память через Memory Compaction. На вопрос &quot;что ты обо мне знаешь?&quot; он не сыплет общими фразами, а помнит всю историю: ночные дебаги, борьбу с троттлингом, банхаммер, лендинг. Факты и даты сжимаются и никогда не теряются. И третье – наши планы в R&amp;D. Здесь три вещи: во-первых, автономная проактивность: агент сам анализирует контекст и решает написать первым: &quot;Дружище, ты как?&quot;, если вчера был тяжёлый день. Во-вторых – еженедельный отчёт тепла: раз в неделю хвалит за стойкость и успехи там, где было трудно – то мужское признание, которого нам всем не хватает. И в-третьих – консьерж групповых чатов: у каждого из нас есть чаты, куда заходишь через 5 дней, а там 400 сообщений. Стетхэм делает выжимку самого главного, а при необходимости может ворваться в чат и метким пацанским комментарием разрядить любую перепалку. Это реальная цифровизация персонального бро. Бот открыт, лендинг stethem.apps.aipush.dev работает – заходите, тестируйте! Спасибо!»
+</textarea>
+  </div>
+
+  <script>
+    function toggleCheatSheet() {
+      const drawer = document.getElementById('cheatDrawer');
+      const backdrop = document.getElementById('cheatDrawerBackdrop');
+      const isOpen = !drawer.classList.contains('translate-x-full');
+      if (isOpen) {
+        drawer.classList.add('translate-x-full');
+        backdrop.classList.add('opacity-0', 'pointer-events-none');
+        backdrop.classList.remove('opacity-100', 'pointer-events-auto');
+      } else {
+        drawer.classList.remove('translate-x-full');
+        backdrop.classList.remove('opacity-0', 'pointer-events-none');
+        backdrop.classList.add('opacity-100', 'pointer-events-auto');
+      }
+    }
+
+    function copyCheatSheet() {
+      const raw = document.getElementById('rawCheatMd').value;
+      navigator.clipboard.writeText(raw).then(() => {
+        const btn = document.getElementById('copyBtn');
+        const txt = document.getElementById('copyText');
+        txt.textContent = 'Скопировано в буфер!';
+        btn.classList.remove('bg-indigo-600');
+        btn.classList.add('bg-emerald-600');
+        setTimeout(() => {
+          txt.textContent = 'Скопировать всё';
+          btn.classList.remove('bg-emerald-600');
+          btn.classList.add('bg-indigo-600');
+        }, 2500);
+      }).catch(err => {
+        alert('Не удалось скопировать. Пожалуйста, выделите текст вручную.');
+      });
+    }
+  </script>
+
 </body>
 </html>
