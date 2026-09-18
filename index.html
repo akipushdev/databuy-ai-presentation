@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ИИ-инструменты в психотерапии: проблемы и возможности | Александр Кирилов</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+            },
+            accent: {
+              cyan: '#06b6d4',
+              emerald: '#10b981',
+              amber: '#f59e0b',
+              rose: '#f43f5e',
+              violet: '#8b5cf6',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    
+    html, body {
+      background-color: #09090b;
+      color: #f4f4f5;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Snap Scroll Mode */
+    .snap-container {
+      scroll-snap-type: y mandatory;
+      overflow-y: scroll;
+      height: 100vh;
+      scroll-behavior: smooth;
+    }
+
+    .slide {
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3rem 4rem;
+      position: relative;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    /* Free Scroll Mode */
+    .free-container {
+      scroll-snap-type: none !important;
+      overflow-y: auto;
+      height: auto;
+    }
+    .free-container .slide {
+      min-height: auto;
+      padding: 6rem 4rem;
+    }
+
+    .glass-card {
+      background: rgba(24, 24, 27, 0.65);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 1.25rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg, #ffffff 0%, #a1a1aa 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .gradient-brand {
+      background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Image preview container */
+    .img-box {
+      background: rgba(18, 18, 23, 0.8);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 1rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    .img-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+  </style>
+</head>
+<body class="bg-zinc-950 text-zinc-100 antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Top Progress Bar -->
+  <div class="fixed top-0 left-0 right-0 h-1 bg-zinc-900 z-50">
+    <div id="progressBar" class="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-cyan-400 w-0 transition-all duration-300"></div>
+  </div>
+
+  <!-- Floating Navigation Controls -->
+  <div class="fixed top-6 right-8 z-50 flex items-center gap-3">
+    <span id="slideIndicator" class="text-xs font-mono font-semibold px-3 py-1.5 rounded-full bg-zinc-900/80 border border-zinc-800 text-zinc-400 backdrop-blur-md">
+      01 / 13
+    </span>
+    <button id="modeToggle" onclick="toggleScrollMode()" class="text-xs font-medium px-3.5 py-1.5 rounded-full bg-zinc-800/80 hover:bg-zinc-700/80 border border-zinc-700 text-zinc-200 transition backdrop-blur-md flex items-center gap-1.5">
+      <svg class="w-3.5 h-3.5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+      <span id="modeLabel">Слайды (Snap)</span>
+    </button>
+    <button onclick="toggleFullscreen()" class="p-2 rounded-full bg-zinc-800/80 hover:bg-zinc-700/80 border border-zinc-700 text-zinc-300 transition" title="Полный экран (F)">
+      <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+    </button>
+  </div>
+
+  <!-- Bottom Arrow Controls -->
+  <div class="fixed bottom-6 right-8 z-50 flex items-center gap-2">
+    <button onclick="prevSlide()" class="p-3 rounded-full bg-zinc-900/90 hover:bg-indigo-600 border border-zinc-800 text-zinc-300 hover:text-white transition shadow-lg backdrop-blur-md">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+    </button>
+    <button onclick="nextSlide()" class="p-3 rounded-full bg-zinc-900/90 hover:bg-indigo-600 border border-zinc-800 text-zinc-300 hover:text-white transition shadow-lg backdrop-blur-md">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+    </button>
+  </div>
+
+  <!-- MAIN SLIDES CONTAINER -->
+  <main id="sliderContainer" class="snap-container">
+
+    <!-- SLIDE 1: Title -->
+    <section class="slide" id="slide-1">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          <!-- Left Content -->
+          <div class="lg:col-span-7">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-semibold uppercase tracking-wider mb-6">
+              <span class="w-2 h-2 rounded-full bg-indigo-400 animate-pulse"></span>
+              DataBuy IT Meetup 2026
+            </div>
+            
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.12] mb-6">
+              ИИ-инструменты в <br>
+              <span class="gradient-brand">психотерапии</span>:
+              <span class="text-zinc-400 font-normal block text-2xl sm:text-3xl lg:text-4xl mt-3">проблемы и возможности</span>
+            </h1>
+            
+            <p class="text-base sm:text-lg text-zinc-400 font-light leading-relaxed mb-8 max-w-xl">
+              От Одноклассников и клинических исследований до гештальт-интенсивов: опыт создания «Зеркала», мемного Стетхэма и грабли продакшена в чувствительных данных.
+            </p>
+
+            <div class="inline-flex items-center gap-3.5 p-3 px-5 rounded-2xl bg-zinc-900/90 border border-zinc-800/90 backdrop-blur-md shadow-lg">
+              <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
+              <div>
+                <div class="font-bold text-base md:text-lg text-zinc-100">Александр Кирилов</div>
+                <div class="text-xs text-zinc-400 font-medium">Senior Data & Applied AI Systems Engineer</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Photo -->
+          <div class="lg:col-span-5 flex justify-center lg:justify-end">
+            <div class="relative group w-full max-w-sm sm:max-w-md">
+              <!-- Subtle glow -->
+              <div class="absolute -inset-1 bg-gradient-to-r from-indigo-500/30 via-purple-500/20 to-cyan-500/30 rounded-3xl blur-xl opacity-60 group-hover:opacity-100 transition duration-500"></div>
+              
+              <div class="relative glass-card p-3 rounded-3xl border border-indigo-500/30 shadow-2xl overflow-hidden bg-zinc-950/80">
+                <div class="overflow-hidden rounded-2xl border border-zinc-800/80 max-h-[440px] flex items-center justify-center bg-zinc-900/60">
+                  <img src="assets/alex.jpg" alt="Александр Кирилов" class="w-full h-auto max-h-[440px] object-cover object-center group-hover:scale-102 transition duration-500">
+                </div>
+                <div class="pt-3 pb-1 px-2 flex items-center justify-between text-xs">
+                  <span class="font-mono text-indigo-400 text-[11px]">20+ лет в IT • Гештальт</span>
+                  <span class="text-zinc-500 font-mono text-[11px]">Zero-Knowledge</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: Career Bio -->
+    <section class="slide" id="slide-2">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-4">Бэкграунд</div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-10 gradient-text">20 лет в IT: от экстремального Highload до AI</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- Card 1 -->
+          <div class="glass-card p-6 border-l-4 border-l-amber-500">
+            <div class="text-xs font-semibold text-amber-400 uppercase tracking-wider mb-2">Highload Core</div>
+            <h3 class="text-xl font-bold text-zinc-100 mb-1">Одноклассники</h3>
+            <p class="text-xs text-zinc-400 mb-3">Москва • 40M DAU / 140M MAU</p>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              Java-разработка ядра платформы игр и приложений. Запуск сервиса BBox (rate limiting и таргетинг уведомлений). Школа отказоустойчивости под миллионами запросов.
+            </p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="glass-card p-6 border-l-4 border-l-cyan-500">
+            <div class="text-xs font-semibold text-cyan-400 uppercase tracking-wider mb-2">ML Pioneers</div>
+            <h3 class="text-xl font-bold text-zinc-100 mb-1">InData Labs</h3>
+            <p class="text-xs text-zinc-400 mb-3">Lead Data & High-Load Engineer • Минск</p>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              Руководство бэкендом и дата-инженерией в связке с Data Scientists: <strong>InfluencEye</strong> (ML-поиск и процессинг аудитории инфлюенсеров) и <strong>NoginX</strong> (AI-автобиддинг рекламы).
+            </p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="glass-card p-6 border-l-4 border-l-indigo-500">
+            <div class="text-xs font-semibold text-indigo-400 uppercase tracking-wider mb-2">Clinical Trials</div>
+            <h3 class="text-xl font-bold text-zinc-100 mb-1">RedCap Cloud / Pfizer</h3>
+            <p class="text-xs text-zinc-400 mb-3">4 года до августа 2026 • CDC & ClickHouse</p>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              Потоковый стриминг данных для Pfizer: Debezium, Kafka Connect, денормализация из Postgres в ClickHouse для тяжелой медицинской отчетности в k8s.
+            </p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="glass-card p-6 border-l-4 border-l-emerald-500 md:col-span-2">
+            <div class="text-xs font-semibold text-emerald-400 uppercase tracking-wider mb-2">Вектор прямо сейчас</div>
+            <h3 class="text-xl font-bold text-zinc-100 mb-1">Applied AI Systems Engineering & AIDD</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              Проектирование агентских систем (LangGraph, Multi-Agent), память агентов (Memory Compaction), Tool Calling / MCP, контроль токенов и LLMOps. Разработка через AI-агентов (AI-Driven Development).
+            </p>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="glass-card p-6 border-l-4 border-l-rose-500">
+            <div class="text-xs font-semibold text-rose-400 uppercase tracking-wider mb-2">Параллельный мир</div>
+            <h3 class="text-xl font-bold text-zinc-100 mb-1">4 года в гештальте</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              Личная и групповая терапия, ежегодные интенсивы на 400 человек в Беларуси. 1-я ступень окончена, поступление на 2-ю ступень.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: Elephant in the Room -->
+    <section class="slide" id="slide-3">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-4">Реальность</div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-8 gradient-text">Слон в комнате: как мы и терапевты используем LLM</h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7 space-y-5">
+            <div class="glass-card p-6 border border-zinc-800">
+              <h3 class="text-lg font-bold text-indigo-300 mb-2">«Почини не только баг, но и меня»</h3>
+              <p class="text-zinc-300 text-sm leading-relaxed">
+                Все мы пробовали обращаться к ChatGPT за личным: разбор переписки с партнершей, трения с боссом, поиск повторяющихся граблей. Анализ со стороны третьего лица поразительно точен.
+              </p>
+            </div>
+
+            <div class="glass-card p-6 border border-zinc-800">
+              <h3 class="text-lg font-bold text-cyan-300 mb-2">Терапевты со стажем 5–10 лет делают то же самое</h3>
+              <p class="text-zinc-300 text-sm leading-relaxed">
+                Сессии с супервизором стоят больших денег. Практикующие терапевты на интенсивах уже вовсю несут заметки и транскрипты сессий за 4 месяца в LLM, чтобы найти свои «слепые зоны».
+              </p>
+            </div>
+
+            <div class="glass-card p-6 border-l-4 border-l-rose-500 bg-rose-950/20">
+              <h3 class="text-lg font-bold text-rose-300 mb-2">Но как это делает не-айтишник?</h3>
+              <ul class="text-sm text-zinc-300 space-y-2 list-disc list-inside">
+                <li>Нет внешней структурированной памяти (нет Obsidian): всё пишется в один веб-чат.</li>
+                <li><strong>Переполнение контекстного окна:</strong> модель всё забывает, путает факты и галлюцинирует.</li>
+                <li>Интимные подробности жизни и клиентов улетают в открытое американское облако.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="glass-card p-2.5 rounded-2xl border border-zinc-700/60 shadow-2xl max-h-[500px] overflow-hidden flex flex-col items-center w-full max-w-sm">
+              <div class="w-full overflow-hidden rounded-xl border border-zinc-800">
+                <img src="assets/chatgpt.png" alt="Реальный диалог с ChatGPT" class="w-full h-auto max-h-[440px] object-cover object-top">
+              </div>
+              <div class="text-[11px] text-zinc-400 font-medium py-1.5 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                Реальный диалог и анализ через ChatGPT
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: PsychoAI Mirror (Part 1) -->
+    <section class="slide" id="slide-4">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-4">Проект «Зеркало»</div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Зачем на самом деле нужен AI-дневник?</h2>
+        <p class="text-zinc-400 text-lg mb-8 max-w-3xl">Дневник — это не самоцель, а привлекательная форма сбора психологического слепка личности для эмуляции метапозиции помощника терапевта.</p>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <!-- Persona 1 -->
+            <div class="glass-card p-4 border border-rose-500/30 flex gap-3.5 items-center">
+              <img src="assets/personas/provocateur.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-rose-500 shrink-0 shadow-lg">
+              <div>
+                <div class="text-[10px] font-bold text-rose-400 uppercase tracking-wide">Провокатор</div>
+                <h4 class="text-base font-bold text-zinc-100">Катя</h4>
+                <p class="text-xs text-zinc-400 leading-tight mt-0.5">
+                  Наглая, резкая, рубит в лоб. Вскрывает психологические защиты без жалости.
+                </p>
+              </div>
+            </div>
+
+            <!-- Persona 2 -->
+            <div class="glass-card p-4 border border-emerald-500/30 flex gap-3.5 items-center">
+              <img src="assets/personas/caring_mom.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-emerald-500 shrink-0 shadow-lg">
+              <div>
+                <div class="text-[10px] font-bold text-emerald-400 uppercase tracking-wide">Безусловное принятие</div>
+                <h4 class="text-base font-bold text-zinc-100">Мамочка</h4>
+                <p class="text-xs text-zinc-400 leading-tight mt-0.5">
+                  Тепло и забота при любой жести. Выслушает, обнимет и не станет читать нотаций.
+                </p>
+              </div>
+            </div>
+
+            <!-- Persona 3 -->
+            <div class="glass-card p-4 border border-cyan-500/30 flex gap-3.5 items-center">
+              <img src="assets/personas/pirate.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-cyan-500 shrink-0 shadow-lg">
+              <div>
+                <div class="text-[10px] font-bold text-cyan-400 uppercase tracking-wide">Романтик и бунтарь</div>
+                <h4 class="text-base font-bold text-zinc-100">Джек Воробей</h4>
+                <p class="text-xs text-zinc-400 leading-tight mt-0.5">
+                  Холостяк, зовущий к свободе. Поддержит под грузом брака и обязательств.
+                </p>
+              </div>
+            </div>
+
+            <!-- Persona 4 -->
+            <div class="glass-card p-4 border border-indigo-500/30 flex gap-3.5 items-center">
+              <img src="assets/personas/yalom.jpg" class="w-14 h-14 rounded-full object-cover border-2 border-indigo-500 shrink-0 shadow-lg">
+              <div>
+                <div class="text-[10px] font-bold text-indigo-400 uppercase tracking-wide">Экзистенциальный мудрец</div>
+                <h4 class="text-base font-bold text-zinc-100">Ирвин Ялом</h4>
+                <p class="text-xs text-zinc-400 leading-tight mt-0.5">
+                  Классическая глубина и философский взгляд на выбор и ответственность.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="glass-card p-2 rounded-2xl border border-zinc-700/60 shadow-2xl max-h-[480px] overflow-hidden flex flex-col items-center w-full max-w-sm">
+              <div class="w-full overflow-hidden rounded-xl border border-zinc-800">
+                <img src="assets/mirror-dialogue.png" alt="Реальный голосовой диалог в Зеркале" class="w-full h-auto max-h-[440px] object-cover object-top">
+              </div>
+              <div class="text-[11px] text-zinc-400 font-medium py-1.5 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                Живой войс-диалог с Мамочкой в Telegram
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: PsychoAI Mirror (Part 2 - B2T) -->
+    <section class="slide" id="slide-5">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-4">B2T Архитектура</div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Спасение терапевта от тупика 5-й сессии</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="glass-card p-6 border-t-4 border-t-rose-500">
+            <div class="text-xs font-bold text-rose-400 uppercase tracking-wide mb-2">Проблема индустрии</div>
+            <h3 class="text-xl font-bold text-zinc-100 mb-3">Дропаут на 5-6 сессии</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              Начинающие терапевты часто упираются в стену: первичный запрос проговорен, динамика вязнет, специалист не знает, куда идти дальше, а клиент разочаровывается и уходит.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 border-t-4 border-t-cyan-500">
+            <div class="text-xs font-bold text-cyan-400 uppercase tracking-wide mb-2">Решение 1</div>
+            <h3 class="text-xl font-bold text-zinc-100 mb-3">Pre-Session Brief</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              Экономия 20 минут сессии на воспоминания «что было на неделе». За час до встречи терапевт видит всплески эмоций (злость, тревога), соматику (ком в горле) и ключевые триггеры.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 border-t-4 border-t-indigo-500">
+            <div class="text-xs font-bold text-indigo-400 uppercase tracking-wide mb-2">Решение 2</div>
+            <h3 class="text-xl font-bold text-zinc-100 mb-3">Подсветка слепых зон</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              Система подсвечивает циклические избегания и предлагает обоснованные варианты интервенций и упражнений, замеряя динамику изменений на последующих сессиях.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8 p-5 rounded-xl bg-zinc-900/60 border border-zinc-800 flex items-center gap-4">
+          <div class="w-10 h-10 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center shrink-0 font-bold">∑</div>
+          <p class="text-sm text-zinc-300">
+            <strong>Двусторонний контур:</strong> клиент ведет дневник между сессиями $\leftrightarrow$ терапевт скидывает краткие заметки после сессии $	o$ система растит глубокий психологический профиль.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: Marketplace & Resistance -->
+    <section class="slide" id="slide-6">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-4">Отдельный продукт</div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Маркетплейс: как обойти сопротивление психики</h2>
+        <p class="text-zinc-400 text-lg mb-8 max-w-3xl">Подобрать психолога — адский квест. И главная преграда — это наш собственный мозг.</p>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7 space-y-4">
+            <div class="glass-card p-4 border-l-4 border-l-rose-500">
+              <h3 class="text-base font-bold text-zinc-100">Почему реклама в соцсетях не работает?</h3>
+              <p class="text-xs text-zinc-300 leading-relaxed mt-1">
+                Побеждает тот, кто умеет агрессивно продавать. Люди боятся рекламы и обжигаются на посредственностях.
+              </p>
+              <div class="mt-2 p-2.5 rounded-lg bg-rose-950/30 border border-rose-900/40 text-[11px] text-rose-300">
+                <strong>Парадокс сопротивления:</strong> психика выбирает «удобного» терапевта, чтобы не меняться.
+              </div>
+            </div>
+
+            <div class="glass-card p-4 border-l-4 border-l-emerald-500">
+              <h3 class="text-base font-bold text-zinc-100">Рекомендация по клинической эффективности</h3>
+              <p class="text-xs text-zinc-300 leading-relaxed mt-1">
+                Система сопоставляет запрос с базой успешных сессий терапевтов в Минске: рассчитывает процент полезности (92%) и дает точное обоснование, почему именно этот специалист поможет.
+              </p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="glass-card p-2.5 rounded-2xl border border-zinc-700/60 shadow-2xl max-h-[480px] overflow-hidden flex flex-col items-center w-full max-w-sm">
+              <div class="w-full overflow-hidden rounded-xl border border-zinc-800">
+                <img src="assets/mirror-marketplace.png" alt="Реальный маркетплейс терапевтов" class="w-full h-auto max-h-[440px] object-cover object-top">
+              </div>
+              <div class="text-[11px] text-zinc-400 font-medium py-1.5 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                Карточка терапевта в Минске (Полезность: 92%)
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: Will AI replace therapist? -->
+    <section class="slide" id="slide-7">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-4">Философия контакта</div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-8 gradient-text">Заменит ли AI психотерапевта?</h2>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7 space-y-6">
+            <div class="glass-card p-6 border-l-4 border-l-amber-500">
+              <h3 class="text-xl font-bold text-zinc-100 mb-2">Феномен живого свидетеля и исповеди</h3>
+              <p class="text-sm text-zinc-300 leading-relaxed">
+                В терапии исцеляет не совет, а факт присутствия другого человека напротив. Когда ты открываешь самое уязвимое и видишь, что тебя принимают и не отвергают. Надиктовывание в телефон этого контакта не заменит никогда.
+              </p>
+            </div>
+
+            <div class="glass-card p-6 border-l-4 border-l-indigo-500">
+              <h3 class="text-xl font-bold text-zinc-100 mb-2">Телесность и невербалика</h3>
+              <p class="text-sm text-zinc-300 leading-relaxed">
+                Дрожь в голосе, паузы, соматический резонанс, «поле» контакта — наука пока не научилась это оцифровывать.
+              </p>
+            </div>
+
+            <div class="p-6 rounded-2xl bg-gradient-to-r from-indigo-900/40 via-purple-900/40 to-transparent border border-indigo-500/30">
+              <div class="text-xs uppercase font-bold text-indigo-400 mb-1">Формула будущего</div>
+              <p class="text-lg font-bold text-zinc-100">
+                AI не заменит терапевта. Но терапевт с AI-инструментами на 100% обгонит того, кто работает по старинке (ровно как программист с AIDD).
+              </p>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5">
+            <div class="glass-card p-8 text-center flex flex-col items-center justify-center min-h-[320px]">
+              <div class="w-20 h-20 rounded-full bg-indigo-500/10 border border-indigo-500/30 flex items-center justify-center text-3xl mb-4">
+                🤝
+              </div>
+              <h4 class="text-xl font-bold text-zinc-100 mb-2">Симбиоз, а не замена</h4>
+              <p class="text-xs text-zinc-400 max-w-xs leading-relaxed">
+                Человек приносит живой контакт и эмпатию. Машина приносит масштаб, память и точность анализа данных.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: Security Nightmare -->
+    <section class="slide" id="slide-8">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-rose-950 text-rose-300 border border-rose-800 mb-4">Безопасность</div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 text-rose-400">Кошмар безопасности: тихая катастрофа прямо сейчас</h2>
+        <p class="text-zinc-400 text-lg mb-8 max-w-3xl">Как прямо сегодня конфиденциальные данные топ-менеджеров и компаний утекают в открытый веб через кабинеты психологов.</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="glass-card p-6 border-t-4 border-t-rose-500">
+            <div class="text-xs font-mono text-zinc-400 mb-2">ШАГ 1</div>
+            <h3 class="text-lg font-bold text-zinc-100 mb-2">Исповедь на сессии</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              Сеньор, тимлид или фаундер приходит на сессию выгоревшим. Рассказывает про зарплаты коллег, конфликты фаундеров, финансовые трудности и стратегию стартапа.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 border-t-4 border-t-amber-500">
+            <div class="text-xs font-mono text-zinc-400 mb-2">ШАГ 2</div>
+            <h3 class="text-lg font-bold text-zinc-100 mb-2">Наивная автоматизация</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              Психолог честен и никого не хочет подставить. Но он транскрибирует аудиозапись встречи и... <strong>вставляет весь текст в веб-интерфейс ChatGPT</strong>!
+            </p>
+          </div>
+
+          <div class="glass-card p-6 border-t-4 border-t-rose-600 bg-rose-950/20">
+            <div class="text-xs font-mono text-rose-400 mb-2">РЕЗУЛЬТАТ</div>
+            <h3 class="text-lg font-bold text-rose-200 mb-2">Утечка в чужое облако</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed">
+              Интимная жизнь человека и коммерческая тайна компании навсегда остаются в логах сторонних серверов за рубежом.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8 p-5 rounded-xl bg-zinc-900 border border-zinc-800 text-sm text-zinc-300">
+          ⚡ <strong>Закон РБ № 99-З «О защите персональных данных»:</strong> данные граждан Беларуси должны обрабатываться внутри страны. Передача интимных клиентских сессий в зарубежные публичные облака — прямое нарушение закона. Решение — защищенные локальные ЦОД (hoster.by / beCloud).
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: Production Architecture (Zero-Knowledge) -->
+    <section class="slide" id="slide-9">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-4">Архитектура</div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Zero-Knowledge: как хранить, чтобы не прочитать</h2>
+        <p class="text-zinc-400 text-lg mb-8 max-w-3xl">Главный страх пользователей: «Саня, а ты сам в базе мои секреты не читаешь?»</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="glass-card p-6 border-l-4 border-l-cyan-500">
+            <h3 class="text-xl font-bold text-zinc-100 mb-3">Client-Side Encryption</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed mb-4">
+              В продакшене запрос разработчика <code>SELECT * FROM notes</code> должен возвращать нечитаемый шум.
+            </p>
+            <ul class="text-xs text-zinc-400 space-y-2 list-disc list-inside">
+              <li>Ключи шифрования генерируются на телефоне клиента.</li>
+              <li>Сервер выступает «слепым сейфом» (Zero-Knowledge).</li>
+              <li>Даже при компрометации БД данные защищены.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card p-6 border-l-4 border-l-indigo-500">
+            <h3 class="text-xl font-bold text-zinc-100 mb-3">Потоковая PII-обфускация</h3>
+            <p class="text-sm text-zinc-300 leading-relaxed mb-4">
+              Прежде чем текст коснется модели, локальный скрипт вычищает сущности на лету:
+            </p>
+            <div class="p-3 rounded-lg bg-zinc-900 border border-zinc-800 font-mono text-xs text-zinc-300 space-y-1">
+              <div class="text-rose-400 line-through">«Поругался с Олей в Минске в офисе Wargaming»</div>
+              <div class="text-emerald-400">→ «Конфликт с [Супруг] в [Город] на [Рабочее место]»</div>
+            </div>
+            <p class="text-xs text-zinc-400 mt-3">
+              Психологический вектор сохраняется на 100%, персональные данные уничтожаются до вызова API.
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center text-xs text-zinc-500">
+          *Я перечислил верхнеуровневые концепции. Если у вас есть опыт надежной потоковой де-анонимизации — обсудим в кулуарах!
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: Local SLM & Hardware Economics -->
+    <section class="slide" id="slide-10">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-zinc-800 text-zinc-300 border border-zinc-700 mb-4">Инфраструктура</div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Зачем стрелять из 70B? Локальные SLM и железо</h2>
+        
+        <div class="glass-card overflow-hidden mb-8">
+          <div class="grid grid-cols-3 p-4 bg-zinc-900/80 border-b border-zinc-800 font-semibold text-sm">
+            <div>Параметр</div>
+            <div class="text-cyan-400">Облачные API (Gemini Flash)</div>
+            <div class="text-emerald-400">Белорусский ЦОД / On-Premise GPU</div>
+          </div>
+          <div class="divide-y divide-zinc-800/60 text-sm">
+            <div class="grid grid-cols-3 p-4 items-center">
+              <div class="text-zinc-400 font-medium">Стоимость токенов</div>
+              <div>~$0.02 / юзер в месяц</div>
+              <div>hoster.by / beCloud: ~450–600 BYN (~$140–180) / мес</div>
+            </div>
+            <div class="grid grid-cols-3 p-4 items-center">
+              <div class="text-zinc-400 font-medium">Размер модели</div>
+              <div>Гигантские 100B+</div>
+              <div><strong>14B – 32B (Qwen, Llama)</strong> в 4-bit / AWQ</div>
+            </div>
+            <div class="grid grid-cols-3 p-4 items-center">
+              <div class="text-zinc-400 font-medium">Персоны и адаптеры</div>
+              <div>Промпты в контексте</div>
+              <div>Легкие LoRA-адаптеры по 200 Мб на лету</div>
+            </div>
+            <div class="grid grid-cols-3 p-4 items-center">
+              <div class="text-zinc-400 font-medium">Приватность данных</div>
+              <div class="text-rose-400 font-bold">❌ Риск утечки в облако США</div>
+              <div class="text-emerald-400 font-bold">✅ 100% соблюдение Закона РБ № 99-З (ЦОД в Беларуси)</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-zinc-400 text-sm text-center">
+          Для роутинга нужны быстрые микро-модели. Для психологической эмпатии не нужны знания квантовой физики — достаточно качественных открытых 14B–32B моделей в защищенном контуре.
+        </p>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: Stethem Boost Bot -->
+    <section class="slide" id="slide-11">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-amber-950 text-amber-300 border border-amber-800 mb-4">Полигон технологий</div>
+        <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">«Дружище Стетхэм»: когда мем взрывает чаты</h2>
+        <p class="text-zinc-400 text-lg mb-8 max-w-3xl">«Зеркало» — продукт сложный и долгосрочный. А Стетхэма я собрал за 3 дня на вайбкодинге для обкатки свежего агентского стека.</p>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7 space-y-4">
+            <div class="glass-card p-5 border-l-4 border-l-amber-500">
+              <h3 class="text-lg font-bold text-zinc-100 mb-1">Инсайт процесс-группы на 400 человек</h3>
+              <p class="text-xs text-zinc-300 leading-relaxed">
+                В конце дня 10 человек садятся в круг и 10 минут без анализа и советов просто сливают злость и мат. Стетхэм — это цифровой кореш: выругался в войс $	o$ получил брутальную поддержку и мем.
+              </p>
+            </div>
+
+            <div class="glass-card p-5 border-l-4 border-l-cyan-500">
+              <h3 class="text-lg font-bold text-zinc-100 mb-1">Архитектура под капотом</h3>
+              <ul class="text-xs text-zinc-300 space-y-1.5 list-disc list-inside">
+                <li>Граф на <strong>LangGraph</strong>.</li>
+                <li>Быстрый роутер с <strong>Tool Calling</strong>: тихо ловит имя (<code>remember_name</code>) и фидбэк.</li>
+                <li>Двухфазная генерация: скрытый <code>insight</code> мудреца $	o$ перевод на язык Стетхэма.</li>
+                <li><strong>Rolling Memory Compaction:</strong> сжимает контекст каждые 10 сообщений и помнит твои проблемы неделями.</li>
+              </ul>
+            </div>
+
+            <div class="p-4 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-200 flex flex-col sm:flex-row items-center justify-between gap-2">
+              <span>💬 <em>«Если тебе тяжело что-то нести — представь, что ты это спиздил»</em></span>
+              <a href="https://stethem.apps.aipush.dev/" target="_blank" class="px-3 py-1.5 rounded-lg bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-mono text-xs border border-amber-500/40 transition flex items-center gap-1.5 shrink-0">
+                <span>stethem.apps.aipush.dev</span>
+                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 flex justify-center">
+            <div class="glass-card p-2.5 rounded-2xl border border-amber-500/40 shadow-2xl max-h-[480px] overflow-hidden flex flex-col items-center w-full max-w-sm">
+              <div class="w-full overflow-hidden rounded-xl border border-zinc-800">
+                <img src="assets/stethem.png" alt="Дружище Стетхэм" class="w-full h-auto max-h-[420px] object-cover object-center shadow-lg">
+              </div>
+              <a href="https://stethem.apps.aipush.dev/" target="_blank" class="text-[11px] text-amber-300 hover:text-white font-medium py-1.5 flex items-center gap-1.5 font-mono transition">
+                <span class="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse"></span>
+                stethem.apps.aipush.dev ↗
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: Stethem in Action (Live Dialogue & Features) -->
+    <section class="slide" id="slide-12">
+      <div class="max-w-6xl mx-auto w-full">
+        <div class="badge bg-amber-950 text-amber-300 border border-amber-800 mb-3">Живой кейс</div>
+        <h2 class="text-3xl md:text-5xl font-bold mb-3 gradient-text">Стетхэм в бою: память, войсы и мем-генератор</h2>
+        <p class="text-zinc-400 text-sm md:text-base mb-6 max-w-3xl">Реальный ночной диалог с ботом: тест долгосрочной памяти, голосовой ввод и генерация артефактов на лету.</p>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+          <!-- Screenshot of Telegram Dialogue -->
+          <div class="lg:col-span-6 flex justify-center">
+            <div class="glass-card p-2 rounded-2xl border border-amber-500/40 shadow-2xl overflow-hidden w-full max-w-lg bg-zinc-950/80">
+              <div class="rounded-xl overflow-hidden border border-zinc-800/80 max-h-[500px] flex items-center justify-center bg-zinc-900/50">
+                <img src="assets/stethem-dialogue.png" alt="Диалог со Стетхэмом в Telegram" class="w-full h-auto max-h-[500px] object-contain">
+              </div>
+              <div class="p-2.5 flex items-center justify-between text-xs text-zinc-400">
+                <span class="flex items-center gap-1.5 font-mono text-[11px] text-amber-300">
+                  <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                  Telegram: @stethemai_bot
+                </span>
+                <a href="https://stethem.apps.aipush.dev/" target="_blank" class="text-amber-400 hover:text-amber-300 font-mono text-[11px] transition flex items-center gap-1">
+                  <span>stethem.apps.aipush.dev</span>
+                  <span>↗</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature Breakdown Cards -->
+          <div class="lg:col-span-6 space-y-3.5">
+            <div class="glass-card p-4 border-l-4 border-l-amber-500">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-base">🧠</span>
+                <h3 class="text-base font-bold text-zinc-100">Тест долгосрочной памяти (Context Compaction)</h3>
+              </div>
+              <p class="text-xs text-zinc-300 leading-relaxed">
+                Вопрос в войсе: <em class="text-amber-200">«Что ты обо мне знаешь, расскажи?»</em><br>
+                Бот не теряет факты из прошлых сессий: помнит архитектуру проекта, борьбу с троттлингом и кулдаунами, банхаммер, внутренние токены и подготовку лендинга.
+              </p>
+            </div>
+
+            <div class="glass-card p-4 border-l-4 border-l-cyan-500">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-base">🎙️</span>
+                <h3 class="text-base font-bold text-zinc-100">Voice-First: эмоции без клавиатуры</h3>
+              </div>
+              <p class="text-xs text-zinc-300 leading-relaxed">
+                Ночью после тяжелого дебага никто не печатает длинные тексты. Пользователь наговаривает войс на 30–40 секунд $→$ Whisper транскрибирует $→$ модель моментально отвечает в брутальной мужской тональности.
+              </p>
+            </div>
+
+            <div class="glass-card p-4 border-l-4 border-l-emerald-500">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-base">🖼️</span>
+                <h3 class="text-base font-bold text-zinc-100">Tool Calling & генератор мемов на лету</h3>
+              </div>
+              <p class="text-xs text-zinc-300 leading-relaxed">
+                Бот не просто шлет текст. Агент вызывает тул генерации мем-открытки с цитатой поверх кадра Джейсона: <em class="text-emerald-200">«Я, как первая группа крови — незаменим, но заменю любого»</em>.
+              </p>
+            </div>
+
+            <div class="p-3.5 rounded-xl bg-gradient-to-r from-amber-500/15 via-orange-500/10 to-transparent border border-amber-500/30 flex items-center justify-between gap-3">
+              <div>
+                <div class="text-xs font-semibold text-amber-200">Хотите протестировать прямо сейчас?</div>
+                <div class="text-[11px] text-zinc-400">Лендинг с описанием персоны и кнопкой перехода в бота:</div>
+              </div>
+              <a href="https://stethem.apps.aipush.dev/" target="_blank" class="px-3.5 py-2 rounded-lg bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold text-xs shadow transition shrink-0 flex items-center gap-1.5">
+                <span>Открыть лендинг</span>
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: Conclusions & Q&A -->
+    <section class="slide" id="slide-13">
+      <div class="max-w-6xl mx-auto w-full text-center">
+        <div class="badge bg-indigo-950 text-indigo-300 border border-indigo-800 mb-6">Финал</div>
+        <h2 class="text-4xl md:text-6xl font-extrabold mb-8 gradient-text">Будущее индустрии</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left mb-12">
+          <div class="glass-card p-6 border-t-4 border-t-indigo-500">
+            <h3 class="text-lg font-bold text-zinc-100 mb-2">Неизбежный тренд</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              Психолог без AI-помощника через 2 года будет как программист без AI-ассистента: работать можно, но ты безнадежно отстаешь по скорости и вниманию к деталям.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 border-t-4 border-t-cyan-500">
+            <h3 class="text-lg font-bold text-zinc-100 mb-2">Победит безопасность</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              Бота могут сделать сотни. Но рынок заберет тот, кто первым решит задачу 100% приватности, Zero-Knowledge и доверия клиентов.
+            </p>
+          </div>
+
+          <div class="glass-card p-6 border-t-4 border-t-emerald-500">
+            <h3 class="text-lg font-bold text-zinc-100 mb-2">Уникальный датасет ментальности</h3>
+            <p class="text-xs text-zinc-400 leading-relaxed">
+              Все мировые AI-модели натренированы на американском CBT. Психологический контекст, культурный код и соматику русскоязычного пространства в СНГ никто никогда системно не собирал. Это первый уникальный датасет под нашу ментальность.
+            </p>
+          </div>
+        </div>
+
+        <div class="p-8 rounded-2xl bg-zinc-900/80 border border-zinc-800 max-w-2xl mx-auto mb-8">
+          <h3 class="text-xl font-bold text-indigo-300 mb-2">Вопрос в зал:</h3>
+          <p class="text-sm text-zinc-300">
+            «Кто из вас уже решал задачи потоковой анонимизации данных и изолированных контуров перед LLM? Давайте обсудим в кулуарах!»
+          </p>
+        </div>
+
+        <div class="flex flex-wrap justify-center items-center gap-4 text-sm text-zinc-300">
+          <a href="https://mirror.apps.aipush.dev/" target="_blank" class="px-4 py-2 rounded-xl bg-zinc-900 hover:bg-indigo-900/40 border border-zinc-700 hover:border-indigo-500/50 transition flex items-center gap-2">
+            <span class="text-indigo-400">🪞</span>
+            <span class="font-mono font-medium">mirror.apps.aipush.dev</span>
+            <span class="text-xs text-zinc-500">↗</span>
+          </a>
+          <a href="https://stethem.apps.aipush.dev/" target="_blank" class="px-4 py-2 rounded-xl bg-zinc-900 hover:bg-amber-900/40 border border-zinc-700 hover:border-amber-500/50 transition flex items-center gap-2">
+            <span class="text-amber-400">🕶️</span>
+            <span class="font-mono font-medium">stethem.apps.aipush.dev</span>
+            <span class="text-xs text-zinc-500">↗</span>
+          </a>
+          <div class="px-4 py-2 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-400">
+            Спикер: <strong class="text-zinc-200">Александр Кирилов</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    const container = document.getElementById('sliderContainer');
+    const progressBar = document.getElementById('progressBar');
+    const slideIndicator = document.getElementById('slideIndicator');
+    const modeLabel = document.getElementById('modeLabel');
+    let isSnapMode = true;
+
+    function updateSlideUI() {
+      const idx = Math.min(Math.max(currentSlide, 0), totalSlides - 1);
+      const progress = ((idx + 1) / totalSlides) * 100;
+      progressBar.style.width = progress + '%';
+      const numStr = String(idx + 1).padStart(2, '0');
+      const totStr = String(totalSlides).padStart(2, '0');
+      slideIndicator.textContent = `${numStr} / ${totStr}`;
+    }
+
+    function scrollToSlide(idx) {
+      if (idx < 0 || idx >= totalSlides) return;
+      currentSlide = idx;
+      slides[idx].scrollIntoView({ behavior: 'smooth' });
+      updateSlideUI();
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides - 1) {
+        scrollToSlide(currentSlide + 1);
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) {
+        scrollToSlide(currentSlide - 1);
+      }
+    }
+
+    function toggleScrollMode() {
+      isSnapMode = !isSnapMode;
+      if (isSnapMode) {
+        container.classList.remove('free-container');
+        container.classList.add('snap-container');
+        modeLabel.textContent = 'Слайды (Snap)';
+        scrollToSlide(currentSlide);
+      } else {
+        container.classList.remove('snap-container');
+        container.classList.add('free-container');
+        modeLabel.textContent = 'Свободный скролл';
+      }
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(err => {});
+      } else {
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        }
+      }
+    }
+
+    // Keyboard navigation
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      }
+    });
+
+    // Track scroll in Snap container to update indicator
+    container.addEventListener('scroll', () => {
+      const scrollPos = container.scrollTop;
+      const height = window.innerHeight;
+      const newIdx = Math.round(scrollPos / height);
+      if (newIdx !== currentSlide && newIdx >= 0 && newIdx < totalSlides) {
+        currentSlide = newIdx;
+        updateSlideUI();
+      }
+    });
+
+    function setSlide5Tab(tab) {
+      const img = document.getElementById('s5Img');
+      const caption = document.getElementById('s5Caption');
+      const b1 = document.getElementById('s5TabReport');
+      const b2 = document.getElementById('s5TabMetrics');
+      if (!img) return;
+      if (tab === 'report') {
+        img.src = 'assets/mirror-therapist-report.png';
+        caption.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>Сырая заметка терапевта → Клинический отчет';
+        b1.className = 'px-3 py-1 rounded-lg bg-indigo-600 text-white font-medium transition shadow';
+        b2.className = 'px-3 py-1 rounded-lg text-zinc-400 hover:text-white font-medium transition';
+      } else {
+        img.src = 'assets/mirror-analysis.png';
+        caption.innerHTML = '<span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Замер метрик клиента (динамика недели)';
+        b2.className = 'px-3 py-1 rounded-lg bg-indigo-600 text-white font-medium transition shadow';
+        b1.className = 'px-3 py-1 rounded-lg text-zinc-400 hover:text-white font-medium transition';
+      }
+    }
+
+    // Initial setup
+    updateSlideUI();
+  </script>
+</body>
+</html>
